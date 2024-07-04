@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+
+}
+
+h1 {
+    
+    text-align: center;
+}
+.register-Register{
+    width: 1100px;
+    height: 500px;
+    
+}
+.h1-Register{
+    margin-bottom: 50px;
+    display: flex;
+    padding: 50px;
+}
+
+.img-register{
+    border: 5px red solid;
+    margin-left: 50px;
+
+}
+img{
+   
+}

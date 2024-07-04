@@ -1,0 +1,134 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+
+#Login {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+#welcome {
+  flex: 1;
+  width: 1330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: -webkit-linear-gradient(90deg, #f05205,#ff9600,#ffd000);background: linear-gradient(90deg, #f05205,#ff9600,#ffd000);
+}
+
+span{
+  font-size: 18px;
+  color: aliceblue;
+  position: absolute;
+  margin-left: 100px;
+  white-space: nowrap; /* Asegura que el texto no se divida en varias líneas */
+  overflow: hidden; 
+  animation: typing steps(20,end) forwards infinite 8s;
+}
+@keyframes typing {
+  0% {
+    width: 0;
+    }
+    50%{
+      width: 40%;
+    }
+}
+#welcome h1 {
+  margin: 0;
+  color: aliceblue;
+  font-size: 50px;
+  position: absolute;
+  margin-bottom: 260px;
+}
+
+#LoginTwo-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  
+}
+
+#LoginTwo-right h1 {
+  position: relative;
+  bottom: 70px;
+  font-size: 40px;
+  right: 20PX;
+}
+
+input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(90deg, #ffa238,#e5842a,#ff7300);background: linear-gradient(90deg, #ffa238,#e5842a,#ff7300);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+button:active {
+  background-color: #004494;
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.img1{
+  position: absolute;
+  margin-top: 300px;
+  margin-right: 800px;
+}
+.img2{
+  position: absolute;
+  margin-top: 303px;
+  margin-right: 470px;
+}
+.img3{
+  position: absolute;
+  margin-top: 303px;
+  margin-right: 150px;
+}
+.register{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+.register h3{
+  width: 300px;
+  margin-left: 1px;
+}
