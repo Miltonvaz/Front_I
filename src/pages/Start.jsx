@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/organismos/Header";
 import "../pages/Start.css";
+import Footer from "../components/organismos/Footer";
 
 function Start() {
     return (
@@ -8,7 +9,7 @@ function Start() {
             <div className="Header">
                 <Header />
             </div>
-            
+                
                 <div className="slider-box">
                     <ul>
                         <li>
@@ -27,6 +28,7 @@ function Start() {
                             </div>
                         </li>
                     </ul>
+                    
                 </div>
             
             <h2>Explora nuestras marcas</h2>
@@ -74,6 +76,8 @@ function Start() {
                    caja5 
                 </div>
             </div>
+
+            <Footer></Footer>
         </>
     );
 }

@@ -17,6 +17,11 @@ function App(){
 
     }
 
+    const Enter2 = () =>{
+        console.log("Enter");
+        navigate("/Admin");
+
+    }
     return(
     <div id="Login">
         <div id="img"></div>
@@ -38,7 +43,9 @@ function App(){
         
         <div id="LoginTwo-right">
             <h1>LOGIN</h1>
-            <img src={iconoUser}></img>
+            <div className="img-iconoUser">
+                <img src={iconoUser}></img>
+            </div>
             <div className="input">
                 <Input text="Name" type= "text"></Input>
                 <br></br>
@@ -47,7 +54,12 @@ function App(){
                 <br></br>
             </div>
             <br></br>
-            <Button text = "Ingresar" onClick={Enter}></Button>
+            <div className="btn">
+                <Button className="custom-btn" text = "Ingresar" onClick={Enter}></Button>
+            </div>
+            <div className="btn">
+                <Button className="custom-btn1" text = "Ingresar-admin" onClick={Enter2}></Button>
+            </div>
             <div className="register">
                 <h3>¿No tienes cuenta? <a href="Register" id="Register">Registrate</a></h3> 
             </div>

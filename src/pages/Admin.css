@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.All-admin {
+    height: 100%;
+    width: 100%;
+}
+.caja2{
+    border: 5px solid red;
+    padding: 5px;
+}
+#top{
+    background: linear-gradient(9deg, #ff8e10, #ff9600, #ffd000);
+    height: 59px;
+}
+#top p{
+    color: white;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding-top: 10px;
+}
+#top2{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#hour-admin{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#reporte-text{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.all-boxAmin{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+.cajas-admin{
+    border: 5px solid purple;
+    width: 100px;
+    height: 150px;
+    
+}
+#caja2-simpleCharts{
+    width: 40%;
+    height: 50vh;
+}

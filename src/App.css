@@ -111,17 +111,17 @@ button:focus {
 .img1{
   position: absolute;
   margin-top: 300px;
-  margin-right: 800px;
+  margin-right: 300px;
 }
 .img2{
   position: absolute;
   margin-top: 303px;
-  margin-right: 470px;
+  margin-right: 60px;
 }
 .img3{
   position: absolute;
   margin-top: 303px;
-  margin-right: 150px;
+  margin-left: 205px;
 }
 .register{
   display: flex;
@@ -131,4 +131,12 @@ button:focus {
 .register h3{
   width: 300px;
   margin-left: 1px;
+}
+.img-iconoUser{
+  
+  position: absolute;
+  margin-bottom: 390px;
+  margin-left: 200px;
+
+
 }
