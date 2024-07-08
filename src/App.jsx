@@ -22,6 +22,11 @@ function App(){
         navigate("/Admin");
 
     }
+    const Enter3 = () =>{
+        console.log("Enter");
+        navigate("/ViewEmployees");
+
+    }
     return(
     <div id="Login">
         <div id="img"></div>
@@ -55,10 +60,13 @@ function App(){
             </div>
             <br></br>
             <div className="btn">
-                <Button className="custom-btn" text = "Ingresar" onClick={Enter}></Button>
+                <Button  className="custom-btn"  text = "Ingresar" onClick={Enter}></Button>
             </div>
             <div className="btn">
                 <Button className="custom-btn1" text = "Ingresar-admin" onClick={Enter2}></Button>
+            </div>
+            <div className="btn">
+                <Button className="custom-btn2" text = "Ingresar-employees" onClick={Enter3}></Button>
             </div>
             <div className="register">
                 <h3>¿No tienes cuenta? <a href="Register" id="Register">Registrate</a></h3> 

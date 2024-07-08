@@ -1,5 +1,7 @@
 import Href from "../components/atoms/href";
 import React, { useState, useEffect } from 'react';
+import "../pages/Employees.css";
+import PlusButton from "../components/atoms/PlusBtn";
 
 function getCurrentDateTime() {
     const today = new Date();
@@ -55,9 +57,9 @@ function Employees(){
                                     <Href text="Inicio" referencia="/Admin" />
                                     <Href text="Empleados" referencia="/Employees" />
                                     <Href text="Delivery" referencia="/Delivery" />
-                                    <Href text="User" referencia="/Users" />
+                                    <Href text="User" referencia="/ViewUsers" />
                                     <Href text="Order" referencia="/Order" />
-                                    <Href text="Salir" referencia="/Start" />
+                                    <Href text="Salir" referencia="/" />
                                 </div>
                             )}
                         </div>
@@ -66,7 +68,17 @@ function Employees(){
             </div>
             <h1>EMPLEADOS</h1>
 
-
+            <div className="view-Employes">
+                <div className="view-Employes-1">
+                    <div className="sub-viewEmployes1">
+                        <p>Empleados existentes</p>
+                    </div>
+                    <div className="sub-viewEmployes1">    
+                        <PlusButton to="/AddEmployees" />
+                    </div> 
+                </div>
+                
+            </div>
 
         </div>   
         </>

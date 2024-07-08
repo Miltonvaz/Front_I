@@ -1,7 +1,7 @@
 import Href from "../components/atoms/href";
-import "../pages/Admin.css";
+import SalesGraph from "../components/atoms/SalesGraph";
 import SimpleBarCharts from "../components/atoms/SimpleBarCharts";
-
+import StackedAreaCharts from "../components/atoms/StackedAreaCharts";
 import React, { useState, useEffect } from 'react';
 
 
@@ -13,7 +13,7 @@ function getCurrentDateTime() {
     return `${date} ${time}`;
 }
 
-function Admin(){
+function ViewEmployees(){
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -37,7 +37,7 @@ function Admin(){
             <div className="All-admin">
                 <div className="barra">
                     <div className="caja2" id="top">
-                        <p>Bienvenido administrador</p>
+                        <p>Bienvenido Empleado</p>
                     </div>
                     <div className="caja2" id="top2">
 
@@ -55,10 +55,9 @@ function Admin(){
                                 </button>
                             {isDropdownOpen && (
                                 <div className="dropdown-content">
-                                    <Href text="Inicio" referencia="/Admin" />
-                                    <Href text="Clientes" referencia="/Employees" />
+                                    <Href text="Inicio" referencia="/ViewEmployees" />
+                                    <Href text="Users" referencia="/Users"/> 
                                     <Href text="Delivery" referencia="/Delivery" />
-                                    <Href text="User" referencia="/ViewUsers" />
                                     <Href text="Order" referencia="/Order" />
                                     <Href text="Salir" referencia="/" />
                                 </div>
@@ -68,25 +67,12 @@ function Admin(){
                     </div>
                    
                 </div>
-
-                <div className="page">
-                    <div className="all-boxAmin">
-                        <div className="cajas-admin">
-
-                        </div>
-                        <div className="cajas-admin" id="caja2-simpleCharts">
-                        <SimpleBarCharts></SimpleBarCharts>
-                        </div>
-
-                        <div className="cajas-admin">
-
-                        </div>
-                        
-                    </div>
-                </div>
+                
             </div>
+            <StackedAreaCharts></StackedAreaCharts>
+            <SalesGraph></SalesGraph>
         </>
     )
 }
 
-export default Admin;
+export default ViewEmployees;

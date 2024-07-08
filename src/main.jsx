@@ -16,7 +16,11 @@ import Users from './pages/Users.jsx'
 import Order from './pages/Order.jsx'
 import Admin from './pages/Admin.jsx'
 import Employees from './pages/Employees.jsx'
-
+import './index.css'; 
+import About from './pages/About.jsx'
+import AddEmployees from './pages/AddEmployees.jsx'
+import ViewEmployees from './pages/ViewEmployees.jsx'
+import ViewUsers from './pages/ViewUsers.jsx'
 
 const router = createBrowserRouter([
   {
@@ -75,6 +79,22 @@ const router = createBrowserRouter([
   {
     path: '/Employees',
     element: <Employees></Employees>
+  },
+  {
+    path: '/About',
+    element: <About></About>
+  },
+  {
+    path: '/AddEmployees',
+    element: <AddEmployees></AddEmployees>
+  },
+  {
+    path: '/ViewEmployees',
+    element: <ViewEmployees></ViewEmployees>
+  },
+  {
+    path: '/ViewUsers',
+    element: <ViewUsers></ViewUsers>
   },
 ])
 

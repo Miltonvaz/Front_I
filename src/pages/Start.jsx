@@ -31,25 +31,25 @@ function Start() {
                     
                 </div>
             
-            <h2>Explora nuestras marcas</h2>
+            <h2 id="h2-start">Explora nuestras marcas</h2>
             <h3>Tenemos más de 13,000 productos en catálogo con 7 marcas especializadas por segmento</h3>
             <div className="box-general">
-                <div className="caja">
-                    TRUPER
+                <div className="caja" id="truper-box">
+                    <p >TRUPER</p>
                 </div>
-                <div className="caja">
-                    PRETUL
+                <div className="caja" id="pretul-box">
+                    <p>PRETUL</p>
                 </div>
-                <div className="caja">
-                    FOSET
+                <div className="caja" id="foset-box">
+                    <p>FOSET</p>
                 </div>
-                <div className="caja">
-                    FIERO
+                <div className="caja" id="fiero-box">
+                    <p>FIERO</p>
                 </div>
 
             </div>
 
-            <h2>Lo mas nuevo</h2>
+            <h2 id="h2-start">Lo mas nuevo</h2>
             <div className="container-video">
                 <div className="frame-video">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/fl72NDMD6wc?si=OLmy8bgG6_ogM6g8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -58,7 +58,7 @@ function Start() {
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/J3uv0-fZRqk?si=rdYemjhAf6EnJwG-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
-            <h2>Productos destacados </h2>
+            <h2 id="h2-start">Productos destacados </h2>
             <div className="container-productos">
                 <div className="box-productos">
                    caja1 

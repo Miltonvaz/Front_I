@@ -1,0 +1,22 @@
+
+
+.view-Employes{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.view-Employes-1{
+    border: 5px red solid;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.view-Employes p{
+    display: flex;
+    font-size: 20px ;
+}
+.sub-viewEmployes1{
+    display: flex;
+    justify-content: space-between;
+}

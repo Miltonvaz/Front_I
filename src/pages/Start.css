@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap');
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -53,7 +57,7 @@
 
 
 
-h2{
+.h2-start{
     font-size: 30px;
     margin-top: 200px;
     margin-left: 100px;
@@ -67,8 +71,73 @@ h3{
     width:201px;
     height: 160px;
     margin: 30px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    background: azure;
+    
+    
+}
+#truper-box::before{
+    background: -webkit-linear-gradient(90deg, #ef2525,#e5f505);background: linear-gradient(90deg, #ef2525,#e5f505);
+}
+#pretul-box::before{
+    background: -webkit-linear-gradient(90deg, #ffab01,#fdc700,#fefb41);
+}
+#foset-box::before{
+    background: -webkit-linear-gradient(90deg, #6595ff,#3c97ff,#2f80ff,#0049ff,#0056d6);
+}
+#fiero-box::before{
+    background: -webkit-linear-gradient(90deg, #d74723,#e62581,#cb1031);
+}
+#truper-box p{
+    color: #FF8B1D;
+    
+}
+#pretul-box p{
+    color: #FBFF00;
+}
+#foset-box p{
+    color: #2F80FF;
+}
+#fiero-box p{
+    color: #CB1031;
+}
+.caja p{
+    z-index: 2;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-family: "Anton SC", sans-serif;
+    
+}
+.caja::before{
+    content: '';
+    position: absolute;
+    left: 10px;
+    width: 189px;
+    height: 170px;
+    background: linear-gradient(#00ccff, #d500f9);
+    animation: rotate 4s linear infinite;
+}
+.caja::after{
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background: azure;
+    border-radius: 16px;
 }
 
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
 .box-general{
     display: flex;
     justify-content: center;

@@ -15,7 +15,7 @@ function Nav(props) {
     return (
         <div className="Nav_elements">
             <Href text="Inicio" referencia="/Start" />
-            <Href text="Nosotros" />
+            <Href text="Nosotros"  referencia="/About"/>
             <div className="dropdown">
                 <button onClick={toggleDropdown} className="dropdown-button">
                     Productos
