@@ -3,6 +3,7 @@ import "../pages/Admin.css";
 import SimpleBarCharts from "../components/atoms/SimpleBarCharts";
 
 import React, { useState, useEffect } from 'react';
+import { Graph } from "../components/atoms/Graph";
 
 
 function getCurrentDateTime() {
@@ -71,15 +72,13 @@ function Admin(){
 
                 <div className="page">
                     <div className="all-boxAmin">
-                        <div className="cajas-admin">
-
-                        </div>
+                        
                         <div className="cajas-admin" id="caja2-simpleCharts">
                         <SimpleBarCharts></SimpleBarCharts>
                         </div>
 
-                        <div className="cajas-admin">
-
+                        <div className="cajas-admin" id="caja3-graphAdmin">
+                            <Graph></Graph>
                         </div>
                         
                     </div>

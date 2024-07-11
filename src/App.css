@@ -22,12 +22,12 @@
   background: -webkit-linear-gradient(90deg, #f05205,#ff9600,#ffd000);background: linear-gradient(90deg, #f05205,#ff9600,#ffd000);
 }
 
-span{
+#container-spanApp{
   font-size: 18px;
   color: aliceblue;
   position: absolute;
   margin-left: 100px;
-  white-space: nowrap; /* Asegura que el texto no se divida en varias líneas */
+  white-space: nowrap; 
   overflow: hidden; 
   animation: typing steps(20,end) forwards infinite 8s;
 }
@@ -64,7 +64,7 @@ span{
   right: 20PX;
 }
 
-input {
+#input-app {
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -73,16 +73,16 @@ input {
   transition: border-color 0.3s;
 }
 
-input:focus {
+#input-app:focus {
   border-color: #007BFF;
   outline: none;
 }
 
-input::placeholder {
+#input-app::placeholder {
   color: #888;
   font-style: italic;
 }
-button {
+#custon-btn {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -92,18 +92,21 @@ button {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
 }
+button{
+  width: 200px;
+}
 
-button:hover {
+#custon-btn:hover {
   background-color: #0056b3;
   transform: scale(1.05);
 }
 
-button:active {
+#custon-btn:active {
   background-color: #004494;
   transform: scale(0.95);
 }
 
-button:focus {
+#custon-btn:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
 }

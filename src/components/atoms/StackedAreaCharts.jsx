@@ -23,7 +23,7 @@ import {
   const StackedAreaCharts = () => {
     return (
       <>
-        <ResponsiveContainer width='100%' aspect={3}>
+        <ResponsiveContainer width='100%' aspect={4}>
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray='3 3' />
             <XAxis dataKey='name' />

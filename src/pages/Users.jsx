@@ -1,6 +1,9 @@
 import Href from "../components/atoms/href";
 import React, { useState, useEffect } from 'react';
 import PlusButton from "../components/atoms/PlusBtn";
+import HeaderEmployees from "../components/organismos/HeaderEmployees";
+import CardsUsers from "../components/molecules/CardsUsers";
+import "../pages/Users.css"
 
 function getCurrentDateTime() {
     const today = new Date();
@@ -33,37 +36,7 @@ function Users(){
     return (
         <>
         <div className="employees-all">
-            <div className="barra">
-                    <div className="caja2" id="top">
-                        <p>Bienvenido Empleado</p>
-                    </div>
-                    <div className="caja2" id="top2">
-
-                        <div className="text-report">
-                            <p id="reporte-text">Reporte general</p>
-                        </div>
-
-                        <div className="text-hour">
-                        <p id="hour-admin">Fecha y hora actuales: {currentDateTime}</p>
-                        </div>
-
-                        <div className="dropdown">
-                                <button onClick={toggleDropdown} className="dropdown-button">
-                                    Funcionalidades
-                                </button>
-                            {isDropdownOpen && (
-                                <div className="dropdown-content">
-                                    <Href text="Inicio" referencia="/ViewEmployees" />
-                                    <Href text="Delivery" referencia="/Delivery" />
-                                    <Href text="User" referencia="/Users" />
-                                    <Href text="Order" referencia="/Order" />
-                                    <Href text="Salir" referencia="/" />
-                                </div>
-                            )}
-                        </div>
-                        
-                    </div>
-            </div>
+        <HeaderEmployees></HeaderEmployees>
             <h1>Users</h1>
 
             <div className="view-Employes">
@@ -76,6 +49,16 @@ function Users(){
                     </div> 
                 </div>
                 
+            </div>
+            <div className="view-EmployesCards">
+                <CardsUsers text="loco migue"> </CardsUsers>
+                <CardsUsers text="migue loco "> </CardsUsers>
+                <CardsUsers text="loco migue"> </CardsUsers>
+                <CardsUsers text="migue loco "> </CardsUsers>
+                <CardsUsers text="loco migue"> </CardsUsers>
+                <CardsUsers text="migue loco "> </CardsUsers>
+                <CardsUsers text="loco migue"> </CardsUsers>
+                <CardsUsers text="migue loco "> </CardsUsers>
             </div>
 
         </div>   

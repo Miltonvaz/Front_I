@@ -18,49 +18,52 @@
 
 
 
-.image-container {
-    margin: 0;
-    width: 100%;
-    overflow: hidden; 
-}
-.slider-box{
+
+.slider-box {
     overflow: hidden;
-    width: 1518px;
-    height: 300px;
-   
-    display: flex;
-}
-.slider-box ul{
-    margin: 0;
-    display: flex;
-    padding: 0;
-    width: 400%;
-    
+    width: 100%;
+    height: 398px;
+    margin: 30px auto 0;
 }
 
-.slider-box li{
+.slider-box ul {
+    display: flex;
+    width: 300%;
     margin: 0;
+    padding: 0;
+    animation: slide 15s infinite alternate ease-in-out;
+}
+
+.slider-box li {
     width: 100%;
     list-style: none;
     
-
 }
-.slider-box img{
-    margin: 0;
+
+.slider-box img {
     width: 100%;
     height: 100%;
 }
-.boxMinSlider{
-    width: 100%;
-    height: 300px;
+
+
+@keyframes slide{
+    0%{ margin-left: 0%;}
+    30%{margin-left: 0%;}
+
+    35%{ margin-left: -100%;}
+    65%{margin-left: -100%;}
+
+    70%{ margin-left: -200%;}
+    95%{margin-left: -200%;}
 }
 
 
 
 .h2-start{
-    font-size: 30px;
+    font-size: 40px;
     margin-top: 200px;
     margin-left: 100px;
+    
 }
 h3{
     margin-top: 70px;

@@ -1,0 +1,17 @@
+.graph-viewEmployees{
+    width: 100%;
+    height: auto;
+    
+}
+.father-elementsEmployees{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    
+}
+.calendar-employees{
+    width: 100%;
+    height:auto;
+    display: flex;
+}

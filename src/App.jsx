@@ -32,7 +32,7 @@ function App(){
         <div id="img"></div>
         <div id="welcome">
             <h1>WELCOME BACK!</h1>
-            <span>Bienvenido a Ferretería ------, tu destino confiable para todas tus <br></br>necesidades de construcción y bricolaje, 
+            <span id="container-spanApp">Bienvenido a Ferretería ------, tu destino confiable para todas tus <br></br>necesidades de construcción y bricolaje, 
                 Encuentra una amplia gama de  <br></br> productos de las mejores marcas del mercado.
             </span>
             <div className="img1">
@@ -52,15 +52,15 @@ function App(){
                 <img src={iconoUser}></img>
             </div>
             <div className="input">
-                <Input text="Name" type= "text"></Input>
+                <Input id="input-app" text="Name" type= "text"></Input>
                 <br></br>
                 <br></br>
-                <Input text="Password" type= "Password"></Input>
+                <Input id="input-app" text="Password" type= "Password"></Input>
                 <br></br>
             </div>
             <br></br>
             <div className="btn">
-                <Button  className="custom-btn"  text = "Ingresar" onClick={Enter}></Button>
+                <Button id="custon-btn" text = "Ingresar" onClick={Enter}></Button>
             </div>
             <div className="btn">
                 <Button className="custom-btn1" text = "Ingresar-admin" onClick={Enter2}></Button>

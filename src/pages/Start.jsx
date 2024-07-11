@@ -13,26 +13,30 @@ function Start() {
                 <div className="slider-box">
                     <ul>
                         <li>
-                            <div className="boxMinSlider">
-                            <img src="/ventaStart1.png" alt="Start Empleo" id="img-civil" />
-                            </div>
+                            
+                            <img src="/ventaStart1.png" alt="Start Empleo"  />
+                            
                         </li>
                         <li>
-                        <div className="boxMinSlider">
-                            <img src="/ventaStart2.png" id="img-start2"></img>
-                            </div>
+                        
+                            <img src="/ventaStart2.png" id="start2"></img>
+                            
                         </li>
                         <li>
-                        <div className="boxMinSlider">
+                        
                             <img src="/ventaStart3.png" ></img>
-                            </div>
+                            
                         </li>
                     </ul>
                     
                 </div>
-            
+            <br></br>
+            <br></br>
+            <br></br>
             <h2 id="h2-start">Explora nuestras marcas</h2>
             <h3>Tenemos más de 13,000 productos en catálogo con 7 marcas especializadas por segmento</h3>
+            <br></br>
+            <br></br>
             <div className="box-general">
                 <div className="caja" id="truper-box">
                     <p >TRUPER</p>
@@ -48,8 +52,11 @@ function Start() {
                 </div>
 
             </div>
-
+            <br></br>
+            <br></br>
             <h2 id="h2-start">Lo mas nuevo</h2>
+            <br></br>
+            <br></br>
             <div className="container-video">
                 <div className="frame-video">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/fl72NDMD6wc?si=OLmy8bgG6_ogM6g8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -58,7 +65,11 @@ function Start() {
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/J3uv0-fZRqk?si=rdYemjhAf6EnJwG-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
+            <br></br>
+            <br></br>
             <h2 id="h2-start">Productos destacados </h2>
+            <br></br>
+            <br></br>
             <div className="container-productos">
                 <div className="box-productos">
                    caja1 

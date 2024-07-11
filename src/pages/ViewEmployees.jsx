@@ -3,7 +3,9 @@ import SalesGraph from "../components/atoms/SalesGraph";
 import SimpleBarCharts from "../components/atoms/SimpleBarCharts";
 import StackedAreaCharts from "../components/atoms/StackedAreaCharts";
 import React, { useState, useEffect } from 'react';
-
+import "../pages/ViewEmployees.css"
+import Calendar from "../components/atoms/calendar";
+import HeaderEmployees from "../components/organismos/HeaderEmployees";
 
 function getCurrentDateTime() {
     const today = new Date();
@@ -34,43 +36,21 @@ function ViewEmployees(){
     return(
         <>
 
-            <div className="All-admin">
-                <div className="barra">
-                    <div className="caja2" id="top">
-                        <p>Bienvenido Empleado</p>
-                    </div>
-                    <div className="caja2" id="top2">
-
-                        <div className="text-report">
-                            <p id="reporte-text">Reporte general</p>
-                        </div>
-
-                        <div className="text-hour">
-                        <p id="hour-admin">Fecha y hora actuales: {currentDateTime}</p>
-                        </div>
-
-                        <div className="dropdown">
-                                <button onClick={toggleDropdown} className="dropdown-button">
-                                    Funcionalidades
-                                </button>
-                            {isDropdownOpen && (
-                                <div className="dropdown-content">
-                                    <Href text="Inicio" referencia="/ViewEmployees" />
-                                    <Href text="Users" referencia="/Users"/> 
-                                    <Href text="Delivery" referencia="/Delivery" />
-                                    <Href text="Order" referencia="/Order" />
-                                    <Href text="Salir" referencia="/" />
-                                </div>
-                            )}
-                        </div>
-                        
-                    </div>
-                   
+                
+            <HeaderEmployees></HeaderEmployees>
+            <div className="father-elementsEmployees">
+                <div className="graph-viewEmployees">
+                    <StackedAreaCharts></StackedAreaCharts>
+                </div>
+                <div className="graph-viewEmployees">
+               
                 </div>
                 
             </div>
-            <StackedAreaCharts></StackedAreaCharts>
-            <SalesGraph></SalesGraph>
+            <div className="calendar-employees">
+                <Calendar></Calendar>
+            </div>
+            
         </>
     )
 }
