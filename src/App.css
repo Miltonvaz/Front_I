@@ -64,7 +64,8 @@
   right: 20PX;
 }
 
-#input-app {
+#input-pasword,
+#input-name {
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -73,12 +74,14 @@
   transition: border-color 0.3s;
 }
 
-#input-app:focus {
+#input-pasword,
+#input-name:focus {
   border-color: #007BFF;
   outline: none;
 }
 
-#input-app::placeholder {
+#input-pasword,
+#input-name::placeholder {
   color: #888;
   font-style: italic;
 }

@@ -1,17 +1,32 @@
-.graph-viewEmployees{
+/* ViewEmployees.css */
+
+.father-elementsEmployees {
     width: 100%;
-    height: auto;
-    
+    display: flex;
 }
-.father-elementsEmployees{
-    width: 100%;
-    height: auto;
+
+.left-employees,
+.right-employees {
+    width: 50%;
     display: flex;
     flex-direction: column;
-    
+    gap: 20px;
+    margin: 15px;
 }
-.calendar-employees{
-    width: 100%;
-    height:auto;
+
+.graph-viewEmployees,
+.graph-viewEmployees1 {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+#graph-stack {
+    height: 200px;
+    width: 100%;
 }

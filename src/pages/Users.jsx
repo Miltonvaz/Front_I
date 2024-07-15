@@ -4,6 +4,8 @@ import PlusButton from "../components/atoms/PlusBtn";
 import HeaderEmployees from "../components/organismos/HeaderEmployees";
 import CardsUsers from "../components/molecules/CardsUsers";
 import "../pages/Users.css"
+import Button from "../components/atoms/Button";
+import AddUser from "./AddUser";
 
 function getCurrentDateTime() {
     const today = new Date();
@@ -45,20 +47,23 @@ function Users(){
                         <p>Usuarios existentes</p>
                     </div>
                     <div className="sub-viewEmployes1">    
-                        <PlusButton to="/AddEmployees" />
+                        <PlusButton to="/AddUser" />
                     </div> 
+                    <div className="sub-viewEmployes1">
+                        <Button text="Eliminar"></Button>
+                    </div>
                 </div>
                 
             </div>
             <div className="view-EmployesCards">
-                <CardsUsers text="loco migue"> </CardsUsers>
-                <CardsUsers text="migue loco "> </CardsUsers>
-                <CardsUsers text="loco migue"> </CardsUsers>
-                <CardsUsers text="migue loco "> </CardsUsers>
-                <CardsUsers text="loco migue"> </CardsUsers>
-                <CardsUsers text="migue loco "> </CardsUsers>
-                <CardsUsers text="loco migue"> </CardsUsers>
-                <CardsUsers text="migue loco "> </CardsUsers>
+                <CardsUsers text="text1"> </CardsUsers>
+                <CardsUsers text="text2"> </CardsUsers>
+                <CardsUsers text="text3"> </CardsUsers>
+                <CardsUsers text="text4"> </CardsUsers>
+                <CardsUsers text="text5"> </CardsUsers>
+                <CardsUsers text="tex6"> </CardsUsers>
+                <CardsUsers text="text7"> </CardsUsers>
+                <CardsUsers text="text8"> </CardsUsers>
             </div>
 
         </div>   

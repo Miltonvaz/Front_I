@@ -7,13 +7,58 @@ import iconoUser from "../public/iconoUser.png";
 import facebook from "../public/facebook.png";
 import ig from "../public/ig.png";
 import twitter from "../public/twitter.png"
+import React, { useEffect, useState } from "react";
+
+
 
 function App(){
 
     const navigate = useNavigate();
+    const [data, setData] = useState([]);
+    const [bandera, setBandera] = useState(false);
+    const [error, setError] = useState(null);
+    let emailLogin;
+    let passwordLogin;
+    
     const Enter = () =>{
         console.log("Enter");
+        
+        emailLogin= document.getElementById("input-name").value
+        passwordLogin= document.getElementById("input-pasword").value
         navigate("/Start");
+        /*
+        if (!emailLogin || !passwordLogin) {
+            setError("Todos los campos son obligatorios");
+            return;
+        }
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+            body: JSON.stringify({ "email": emailLogin , "password": passwordLogin })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error en la solicitud: " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                
+                if (data.success) {
+                    
+                    localStorage.setItem("token", data.token);
+                    
+                    navigate("/Start");
+                } else {
+                    setError(data.message);
+                }
+            })
+            .catch(error => {
+                setError("Error en el servidor: " + error.message);
+            });*/
 
     }
 
@@ -52,10 +97,10 @@ function App(){
                 <img src={iconoUser}></img>
             </div>
             <div className="input">
-                <Input id="input-app" text="Name" type= "text"></Input>
+                <input id="input-name"  type= "email" placeholder="Email"></input>
                 <br></br>
                 <br></br>
-                <Input id="input-app" text="Password" type= "Password"></Input>
+                <input id="input-pasword"  type= "Password" placeholder="Password"></input>
                 <br></br>
             </div>
             <br></br>

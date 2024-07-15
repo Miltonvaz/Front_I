@@ -39,16 +39,19 @@ function ViewEmployees(){
                 
             <HeaderEmployees></HeaderEmployees>
             <div className="father-elementsEmployees">
-                <div className="graph-viewEmployees">
-                    <StackedAreaCharts></StackedAreaCharts>
+                <div className="left-employees">
+                    <div className="graph-viewEmployees" >
+                        <StackedAreaCharts></StackedAreaCharts>
+                    </div>
+                    <div className="graph-viewEmployees"id="graph-stack">
+                        <SalesGraph></SalesGraph>
+                    </div>
                 </div>
-                <div className="graph-viewEmployees">
-               
+                <div className="right-employees">
+                    <div className="graph-viewEmployees">
+                        <Calendar></Calendar>
+                    </div>
                 </div>
-                
-            </div>
-            <div className="calendar-employees">
-                <Calendar></Calendar>
             </div>
             
         </>

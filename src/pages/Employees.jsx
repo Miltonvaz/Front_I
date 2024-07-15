@@ -57,7 +57,7 @@ function Employees(){
                                     <Href text="Inicio" referencia="/Admin" />
                                     <Href text="Empleados" referencia="/Employees" />
                                     <Href text="Delivery" referencia="/Delivery" />
-                                    <Href text="User" referencia="/ViewUsers" />
+                                    <Href text="VerUser" referencia="/ViewUsers" />
                                     <Href text="Order" referencia="/Order" />
                                     <Href text="Salir" referencia="/" />
                                 </div>
