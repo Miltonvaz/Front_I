@@ -1,11 +1,9 @@
-
-import HeaderEmployees from "../components/organismos/HeaderEmployees";
-import Calendar from "../components/atoms/calendar";
-import React, { useState, useEffect } from 'react';
-import dayjs from "dayjs";
+import React, { useEffect, useState } from 'react';
+import NavAdmin from "../components/molecules/navAdmin";
 import CalendarComponent from "../components/atoms/calendar";
+import dayjs from "dayjs";
 
-function Delivery(){
+function DeliveryAdmin() {
     const [deliveryAdmin, setDeliveryAdmin] = useState([]);
     const [bandera, setBandera] = useState(false);
     const [events, setEvents] = useState([
@@ -90,7 +88,7 @@ function Delivery(){
     }, [bandera]);
     return (
         <>
-            <HeaderEmployees></HeaderEmployees>
+            <NavAdmin />
             <h1>Delivery</h1>
             <CalendarComponent events={events} />
             <input type="datetime-local" id="start" placeholder="Start Date" />
@@ -101,4 +99,4 @@ function Delivery(){
     );
 }
 
-export default Delivery;
+export default DeliveryAdmin;

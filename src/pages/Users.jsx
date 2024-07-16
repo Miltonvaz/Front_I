@@ -6,6 +6,7 @@ import CardsUsers from "../components/molecules/CardsUsers";
 import "../pages/Users.css"
 import Button from "../components/atoms/Button";
 import AddUser from "./AddUser";
+import { data } from "autoprefixer";
 
 function getCurrentDateTime() {
     const today = new Date();
@@ -34,6 +35,35 @@ function Users(){
 
         return () => clearInterval(timer); 
     }, []);
+    const [user, setUser] = useState([]);
+    const [bandera, setBandera] = useState(false);
+    useEffect(()=>{
+        fetch(`${import.meta.env.VITE_API_URL}/api/users`,{
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin':'*'
+            },
+        }).then(
+            response => {
+                if(response.ok){
+                    return response.json()
+                }
+            }
+        ).then(
+            data => {
+                
+                setUser(data)
+                setBandera(true)
+                console.log(data)
+            }
+        ).catch(error =>{
+            console.log(error)
+        })
+        
+    },[bandera])
+    
+
 
     return (
         <>
@@ -56,14 +86,9 @@ function Users(){
                 
             </div>
             <div className="view-EmployesCards">
-                <CardsUsers text="text1"> </CardsUsers>
-                <CardsUsers text="text2"> </CardsUsers>
-                <CardsUsers text="text3"> </CardsUsers>
-                <CardsUsers text="text4"> </CardsUsers>
-                <CardsUsers text="text5"> </CardsUsers>
-                <CardsUsers text="tex6"> </CardsUsers>
-                <CardsUsers text="text7"> </CardsUsers>
-                <CardsUsers text="text8"> </CardsUsers>
+                {
+                    user.map(element=><CardsUsers nombre={element.first_name}>myg</CardsUsers>)
+                }
             </div>
 
         </div>   

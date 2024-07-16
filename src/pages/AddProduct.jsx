@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../components/atoms/Button";
 import "../pages/AddEmployees.css";
 import Input from "../components/atoms/input";
@@ -6,79 +6,53 @@ import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
     const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [cant, setCant] = useState("");
     const [data, setData] = useState([]);
     const [bandera, setBandera] = useState(false);
-    let name;
-    let price;
-    let description;
-    let cant;
 
     const SalirEmployees = () => {
         console.log("Salir");
         navigate("/ProductsAdd");
-    }
+    };
 
-    const AddProducts = () =>{
-       name = document.getElementById("nameAddProducts").value
-       description = document.getElementById("descriptionProducts").value
-       price = document.getElementById("priceProducts").value
-       cant = document.getElementById("cantProducts").value
-       console.log("Name:", name);
-       console.log("Description:", description);
-       console.log("Price:", price);
-       console.log("Cant:", cant);
+    const AddProducts = () => {
+        const token = localStorage.getItem('token');
 
-      fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
-        
-        method : "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':'*'
-        },
-        body: JSON.stringify({
-            "name": name,
-	        "description": description,
-            "price": price,
-            "stock": cant,
-            
-        })
-
-        })
-            .then(response => { 
-                if (response.ok)
-                    return response.json()
-            })
-            .then(datos => {
-                setData(datos);
-                setBandera(true);
-                console.log(datos);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
-
-    
-    useEffect(() => {
-       
+        if (!token) {
+            console.log('No hay token almacenado');
+            return;
+        }
 
         fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
-        
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: name,
+                description: description,
+                price: price,
+                stock: cant,
+            })
         })
-            .then(response => { 
-                if (response.ok)
-                    return response.json()
-            })
-            .then(datos => {
-                setData(datos);
-                setBandera(true);
-                console.log(datos);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }, [bandera]);
+        .then(response => { 
+            if (response.ok)
+                return response.json();
+            throw new Error('Error en la solicitud: ' + response.statusText);
+        })
+        .then(datos => {
+            setData(datos);
+            setBandera(true);
+            console.log("Datos recibidos:", datos);
+        })
+        .catch(error => {
+            console.error('Error al agregar producto:', error);
+        });
+    };
 
     return (
         <>
@@ -93,19 +67,39 @@ function AddProduct() {
                 </div>
                 <div className="datosemployees">
                     <div className="dato1">
-                        <input type="text" placeholder="Ingrese nombre" id="nameAddProducts" />
+                        <input
+                            type="text"
+                            placeholder="Ingrese nombre"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
                     </div>
                     <div className="dato1">
-                        <input type="text" placeholder="Descripcion" id="descriptionProducts" />
+                        <input
+                            type="text"
+                            placeholder="Descripcion"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
                     </div>
                     <div className="dato1">
-                        <input type="text" placeholder="Precio" id="priceProducts" />
+                        <input
+                            type="text"
+                            placeholder="Precio"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
                     </div>
                     <div className="dato1">
-                        <input type="text" placeholder="Cantidad" id="cantProducts"/>
+                        <input
+                            type="text"
+                            placeholder="Cantidad"
+                            value={cant}
+                            onChange={(e) => setCant(e.target.value)}
+                        />
                     </div>
                     <div className="btn-addemployees">
-                        <Button text="Agregar" onClick={AddProducts}/>
+                        <Button text="Agregar" onClick={AddProducts} />
                         <Button text="Salir" onClick={SalirEmployees} />
                     </div>
                 </div>

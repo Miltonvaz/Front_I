@@ -51,10 +51,10 @@ function NavAdmin() {
                             <div className="dropdown-content">
                                 <Href text="Inicio" referencia="/Admin" />
                                 <Href text="Empleados" referencia="/Employees" />
-                                <Href text="Delivery" referencia="/Delivery" />
-                                <Href text="User" referencia="/Users" />
-                                <Href text="Order" referencia="/Order" />
-                                <Href text="Salir" referencia="/Start" />
+                                <Href text="Delivery" referencia="/DeliveryAdmin" />
+                                <Href text="User" referencia="/ViewUsers" />
+                                <Href text="Order" referencia="/OrderAdmin" />
+                                <Href text="Salir" referencia="/" />
                             </div>
                         )}
                     </div>

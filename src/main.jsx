@@ -24,6 +24,9 @@ import ViewUsers from './pages/ViewUsers.jsx'
 import ShoppingCart from './pages/ShoppingCart.jsx'
 import ProductsAdd from './pages/ProductsAdd.jsx'
 import AddProduct from './pages/AddProduct.jsx'
+import DeliveryAdmin from './pages/DeliveryAdmin.jsx'
+import OrderAdmin from './pages/OrderAdmin.jsx'
+import AddUser from './pages/AddUser.jsx'
 
 const router = createBrowserRouter([
   {
@@ -110,6 +113,18 @@ const router = createBrowserRouter([
   {
     path: '/AddProduct',
     element: <AddProduct></AddProduct>
+  },
+  {
+    path: '/AddUser',
+    element: <AddUser></AddUser>
+  },
+  {
+    path: '/DeliveryAdmin',
+    element: <DeliveryAdmin></DeliveryAdmin>
+  },
+  {
+    path: '/OrderAdmin',
+    element: <OrderAdmin></OrderAdmin>
   },
 ])
 

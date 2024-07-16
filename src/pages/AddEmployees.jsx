@@ -1,74 +1,65 @@
-import Label  from "../components/atoms/label";
+import NavAdmin from "../components/molecules/navAdmin";
+import Label from "../components/atoms/label";
 import Button from "../components/atoms/Button";
-import "../pages/AddEmployees.css"
-import  Input  from "../components/atoms/input";
+import Input from "../components/atoms/input";
+import "../pages/AddEmployees.css";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import CardsEmployees from "../components/molecules/CardsEmployees";
 
-function AddEmployees(){
-
+function AddEmployees() {
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
+    const [employees, setEmployees] = useState([]);
     const [bandera, setBandera] = useState(false);
-    let nameEmployees;
-    let lastNameEmployes;
-    let emailEmployees;
-    let passwordEmployees;
-   
-    const Salir = () =>{
+
+    const Salir = () => {
         console.log("Salir");
         navigate("/Employees");
-
     }
-    const AddEmployees = () =>{
-        nameEmployees = document.getElementById("nameEmployees").value
-        lastNameEmployes = document.getElementById("lastNameEmployees").value
-        emailEmployees = document.getElementById("emailEmployees").value
-        passwordEmployees = document.getElementById("passwordEmployees").value
-       
-       fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
-         
-         method : "POST",
-         headers: {
-             'Content-Type': 'application/json',
-             'Access-Control-Allow-Origin':'*'
-         },
-         body: JSON.stringify({
-            "first_name": nameEmployees,
-            "last_name": lastNameEmployes,
-            "email": emailEmployees,
-            "password": passwordEmployees,
-            "role_id_fk": 2,
-            "created_by": "admin_user"
-         })
- 
-         })
-             .then(response => { 
-                 if (response.ok)
-                     return response.json()
-             })
-             .then(datos => {
-                 setData(datos);
-                 setBandera(true);
-                 console.log(datos);
-             })
-             .catch(error => {
-                 console.log(error);
-             })
-     }
-     
-     useEffect(() => {
-       
+
+    const AddEmployees = () => {
+        let nameEmployees = document.getElementById("nameEmployees").value;
+        let lastNameEmployes = document.getElementById("lastNameEmployees").value;
+        let emailEmployees = document.getElementById("emailEmployees").value;
+        let passwordEmployees = document.getElementById("passwordEmployees").value;
 
         fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
-        
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({
+                "first_name": nameEmployees,
+                "last_name": lastNameEmployes,
+                "email": emailEmployees,
+                "password": passwordEmployees,
+                "role_id_fk": 2,
+                "created_by": "admin_user"
+            })
         })
             .then(response => { 
                 if (response.ok)
                     return response.json()
             })
+            .then(newEmployee => {
+                setEmployees([...employees, newEmployee]);
+                setBandera(true);
+                console.log(newEmployee);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/api/users`, {})
+            .then(response => { 
+                if (response.ok)
+                    return response.json()
+            })
             .then(datos => {
-                setData(datos);
+                setEmployees(datos);
                 setBandera(true);
                 console.log(datos);
             })
@@ -76,8 +67,8 @@ function AddEmployees(){
                 console.log(error);
             })
     }, [bandera]);
- 
-    return(
+
+    return (
         <>
             <div className="caja2" id="top">
                 <p>Bienvenido Administrador</p>
@@ -90,7 +81,7 @@ function AddEmployees(){
                 </div>
                 <div className="datosemployees">
                     <div className="dato1">
-                        <input type="text" placeholder="Ingrese nombre"  id="nameEmployees"></input>
+                        <input type="text" placeholder="Ingrese nombre" id="nameEmployees"></input>
                     </div>
                     <div className="dato1">
                         <input type="text" placeholder="Ingrese apellido" id="lastNameEmployees"></input>
@@ -107,7 +98,9 @@ function AddEmployees(){
                     </div>
                 </div>
             </div>
+            {bandera && <CardsEmployees employees={employees} />}
         </>
     )
 }
+
 export default AddEmployees;

@@ -1,6 +1,6 @@
-import "../molecules/CardsUsers.css"
 
-function CardsUsers(props){
+
+function CardsEmployees(props){
     console.log(props.nombre);
     return(
         <>
@@ -16,4 +16,4 @@ function CardsUsers(props){
         </>
     )
 }
-export default CardsUsers;
+export default CardsEmployees;

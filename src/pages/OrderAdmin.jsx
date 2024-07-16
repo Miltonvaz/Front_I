@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Button from "../components/atoms/Button";
 import TableOrder from "../components/molecules/TableOrder";
 import HeaderEmployees from "../components/organismos/HeaderEmployees";
-import "../pages/Order.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
+import NavAdmin from "../components/molecules/navAdmin";
 
-function Order() {
+function OrderAdmin() {
     const [data, setData] = useState([]);
     const [bandera, setBandera] = useState(false);
 
@@ -74,7 +74,7 @@ function Order() {
 
     return (
         <>
-            <HeaderEmployees />
+            <NavAdmin />
             <h1>Orden</h1>
             <div className="all-Order">
                 <div className="inputOrder">
@@ -98,4 +98,4 @@ function Order() {
     );
 }
 
-export default Order;
+export default OrderAdmin;

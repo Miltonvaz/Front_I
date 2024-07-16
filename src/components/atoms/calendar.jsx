@@ -3,7 +3,7 @@ import { Calendar, dayjsLocalizer } from "react-big-calendar";
 import "../atoms/calendar.css"
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-function calendar(){
+function calendar({ events }){
     const localizer = dayjsLocalizer(dayjs);
     return(
         <>
@@ -13,6 +13,7 @@ function calendar(){
             height: 500,
             width:500,
         }}
+        events={events}
         />
 
         </>

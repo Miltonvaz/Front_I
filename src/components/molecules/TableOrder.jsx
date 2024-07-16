@@ -3,68 +3,51 @@ import DataTable from "react-data-table-component";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-function TableOrder() {
-  const columns = [
-    {
-      name: "No",
-      selector: row => row.No,
-      sortable: true,
-    },
-    {
-      name: "Cantidad",
-      selector: row => row.cantidad,
-      sortable: true,
-    },
-    {
-      name: "Unidad",
-      selector: row => row.unidad,
-      sortable: true,
-    },
-    {
-      name: "Descripción",
-      selector: row => row.descripcion,
-      sortable: true,
-    },
-    {
-      name: "Precio Unitario",
-      selector: row => row.precioUnitario,
-      sortable: true,
-    },
-    {
-      name: "Subtotal",
-      selector: row => row.subtotal,
-      sortable: true,
-    },
-  ];
+function TableOrder({ data }) {
+    const columns = [
+        {
+            name: "Products",
+            selector: row => row.product_id_fk,
+            sortable: true,
+        },
+        {
+            name: "City",
+            selector: row => row.city,
+            sortable: true,
+        },
+        {
+            name: "Street",
+            selector: row => row.street,
+            sortable: true,
+        },
+        {
+            name: "UserId",
+            selector: row => row.user_id_fk,
+            sortable: true,
+        },
+    ];
 
-  const data = [
-    {
-      No: "1",
-      cantidad: "1",
-      unidad: "Perez",
-      descripcion: "25",
-      precioUnitario: "25",
-      subtotal: "25",
-    },
-    {
-      No: "2",
-      cantidad: "2",
-      unidad: "Gomez",
-      descripcion: "30",
-      precioUnitario: "25",
-      subtotal: "25",
-    },
-    {
-      No: "3",
-      cantidad: "1",
-      unidad: "Lopez",
-      descripcion: "35",
-      precioUnitario: "25",
-      subtotal: "25",
-    },
-  ];
+    const generatePDF = () => {
+        const doc = new jsPDF();
+        doc.text("Order Table", 20, 10);
 
-  const [records, setRecords] = useState(data);
+        const tableColumn = columns.map(col => col.name);
+        const tableRows = data.map(record => [
+            record.product_id_fk,
+            record.City,
+            record.street,
+            record.user_id_fk
+        ]);
+
+        doc.autoTable({
+            head: [tableColumn],
+            body: tableRows,
+        });
+
+        doc.save("table.pdf");
+    };
+
+     const [records, setRecords] = useState(data);
 
   const handleChange = (e) => {
     const filteredRecords = data.filter(record =>
@@ -73,42 +56,26 @@ function TableOrder() {
     setRecords(filteredRecords);
   };
 
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    doc.text("Order Table", 20, 10);
-
-    const tableColumn = columns.map(col => col.name);
-    const tableRows = records.map(record => [
-      record.No,
-      record.cantidad,
-      record.unidad,
-      record.descripcion,
-      record.precioUnitario,
-      record.subtotal,
-    ]);
-
-    doc.autoTable({
-      head: [tableColumn],
-      body: tableRows,
-    });
-
-    doc.save("table.pdf");
-  };
-
-  return (
-    <>
-      <input type="text" onChange={handleChange} placeholder="Buscar por descripción" />
-      <button onClick={generatePDF}>Generar PDF</button>
-      <DataTable
-        columns={columns}
-        data={records}
-        selectableRows
-        pagination
-        paginationPerPage={5}
-        fixedHeader
-      />
-    </>
-  );
+    return (
+        <>
+            <div>
+                <input
+                    type="text"
+                    placeholder="Buscar por descripción"
+                    onChange={handleChange}
+                />
+                <button onClick={generatePDF}>Generar PDF</button>
+            </div>
+            <DataTable
+                columns={columns}
+                data={data}
+                selectableRows
+                pagination
+                paginationPerPage={5}
+                fixedHeader
+            />
+        </>
+    );
 }
 
 export default TableOrder;
