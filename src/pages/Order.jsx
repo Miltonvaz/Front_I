@@ -75,10 +75,12 @@ function Order() {
     return (
         <>
             <HeaderEmployees />
-            <h1>Orden</h1>
+            <div className="titleOrder">
+                <h1>Orden</h1>
+            </div>
             <div className="all-Order">
                 <div className="inputOrder">
-                    <input type="text" placeholder="Product IDs (comma separated)" id="productIdOrder" />
+                    <input type="text" placeholder="Product Id" id="productIdOrder" />
                 </div>
                 <div className="inputOrder">
                     <input type="text" placeholder="City" id="cityOrder" />
@@ -89,8 +91,11 @@ function Order() {
                 <div className="inputOrder">
                     <input type="text" placeholder="User ID" id="userIdOrder" />
                 </div>
+                <div className="inputOrder">
+                <Button text="Agregar" onClick={AddOrder} />
+                </div>
             </div>
-            <Button text="Agregar" onClick={AddOrder} />
+            
             <div className="tablaOrder">
                 <TableOrder data={data} />
             </div>

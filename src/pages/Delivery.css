@@ -1,0 +1,11 @@
+.titleDelivery{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.calendarDelivery{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+}

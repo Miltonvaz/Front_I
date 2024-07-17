@@ -2,3 +2,19 @@
     width: 1000px;
 
 }
+.titleOrder{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.all-Order{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+.inputOrder{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}

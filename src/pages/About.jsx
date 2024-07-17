@@ -9,12 +9,13 @@ function About(){
         <div className="all-about">
             <div className="img-civilesAbout">
                 <h2 id="h2-about">NOSOTROS</h2>
-                <p id="p-about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis molestiae eos libero magnam nulla in hic, 
-                    cupiditate vero alias quasi veniam saepe pariatur, maxime iste tempora, ab suscipit velit voluptates!
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum exercitationem quo iure obcaecati aliquam ipsum quas eum 
-                    sunt rem molestias, cumque, officiis tempore sed nihil, vitae alias nemo cum non?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas ullam id error impedit alias, aliquid vitae sint doloremque
-                     quia obcaecati excepturi temporibus, rerum aspernatur deleniti hic ipsam quam ea aut.</p>
+                <p id="p-about">En Ferretería "Román", nos enorgullece ser tu proveedor de confianza para todas tus 
+                    necesidades de construcción y mejoras del hogar. Nuestra ferretería ha crecido para convertirse en
+                     un referente en la comunidad, ofreciendo productos de alta calidad y un servicio al cliente 
+                     excepcional Nuestra misión es proporcionar a nuestros clientes una amplia gama de productos de ferretería 
+                     de las mejores marcas, al mismo tiempo que ofrecemos asesoramiento experto y soluciones prácticas. Nos esforzamos 
+                     por ser el lugar de referencia donde los profesionales pueden encontrar todo lo que necesitan para llevar a cabo 
+                     sus proyectos con éxito..</p>
             </div>
         </div>
         <br></br>

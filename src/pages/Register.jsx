@@ -42,8 +42,12 @@ function Register() {
     <>
       <div className="container-all">
         <div className="h1-Register">
+          <div className="register2titleImg">
           <h1>Register</h1>
+          </div>
+          <div className="register2titleImg">
           <img src="/iconoUser.png" alt="User Icon" />
+          </div>
         </div>
 
         <div className="input-Register">

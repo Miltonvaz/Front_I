@@ -23,7 +23,7 @@ function AddEmployees() {
         let emailEmployees = document.getElementById("emailEmployees").value;
         let passwordEmployees = document.getElementById("passwordEmployees").value;
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ function AddEmployees() {
     }
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users`, {})
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {})
             .then(response => { 
                 if (response.ok)
                     return response.json()

@@ -5,6 +5,7 @@ import HeaderEmployees from "../components/organismos/HeaderEmployees";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
 import NavAdmin from "../components/molecules/navAdmin";
+import "../pages/OrderAdmin.css"
 
 function OrderAdmin() {
     const [data, setData] = useState([]);
@@ -75,7 +76,9 @@ function OrderAdmin() {
     return (
         <>
             <NavAdmin />
-            <h1>Orden</h1>
+            <div className="titleOrderAdmin">
+                <h1>Orden</h1>
+            </div>
             <div className="all-Order">
                 <div className="inputOrder">
                     <input type="text" placeholder="Product IDs (comma separated)" id="productIdOrder" />
@@ -89,8 +92,11 @@ function OrderAdmin() {
                 <div className="inputOrder">
                     <input type="text" placeholder="User ID" id="userIdOrder" />
                 </div>
+                <div className="inputOrder">
+                <Button text="Agregar" onClick={AddOrder} />
+                </div>
             </div>
-            <Button text="Agregar" onClick={AddOrder} />
+            
             <div className="tablaOrder">
                 <TableOrder data={data} />
             </div>

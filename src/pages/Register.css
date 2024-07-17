@@ -23,14 +23,22 @@ h1 {
     
 }
 .h1-Register{
-    margin-bottom: 50px;
+    
     display: flex;
-    padding: 50px;
+    justify-content: end;
+    padding: 70px;
+    
 }
 
 .img-register{
     border: 5px red solid;
     margin-left: 50px;
+    display: flex;
+    
 
 }
 
+.register2titleImg{
+    margin-left: 20px;
+    margin-top: 10px;
+}

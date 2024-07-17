@@ -4,6 +4,7 @@ import Calendar from "../components/atoms/calendar";
 import React, { useState, useEffect } from 'react';
 import dayjs from "dayjs";
 import CalendarComponent from "../components/atoms/calendar";
+import "../pages/Delivery.css"
 
 function Delivery(){
     const [deliveryAdmin, setDeliveryAdmin] = useState([]);
@@ -91,12 +92,16 @@ function Delivery(){
     return (
         <>
             <HeaderEmployees></HeaderEmployees>
-            <h1>Delivery</h1>
+            <div className="titleDelivery">
+                <h1>Delivery</h1>
+            </div>
+            <div className="calendarDelivery">
             <CalendarComponent events={events} />
             <input type="datetime-local" id="start" placeholder="Start Date" />
             <input type="datetime-local" id="end" placeholder="End Date" />
             <input type="text" id="title" placeholder="Event Title" />
             <button type="button" onClick={addEventDelivery}>Add Event</button>
+            </div>
         </>
     );
 }

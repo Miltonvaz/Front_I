@@ -31,7 +31,7 @@ function Nav(props) {
             </div>
            
             <Href text="Contacto" referencia="/Contacto" />
-            <Href text ="Apartado" referencia="/ShoppingCart"></Href>
+            <Href text ="Salir" referencia="/"></Href>
         </div>
     );
 }

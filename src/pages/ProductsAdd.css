@@ -1,0 +1,14 @@
+.titleAddProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.btnProducAdd{
+    display: flex;
+    justify-content: center;
+    
+}
+.subBtnProducAdd{
+    height: 30px;
+}   

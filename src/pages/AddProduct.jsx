@@ -3,13 +3,19 @@ import Button from "../components/atoms/Button";
 import "../pages/AddEmployees.css";
 import Input from "../components/atoms/input";
 import { useNavigate } from "react-router-dom";
+import ComboBox from "../components/molecules/ComboBox";
+import ComboBoxProduct from "../components/molecules/ComboBoxProduct";
 
 function AddProduct() {
+
+    
+
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [cant, setCant] = useState("");
+    const [category, setCategory] = useState("");
     const [data, setData] = useState([]);
     const [bandera, setBandera] = useState(false);
 
@@ -20,6 +26,7 @@ function AddProduct() {
 
     const AddProducts = () => {
         const token = localStorage.getItem('token');
+        
 
         if (!token) {
             console.log('No hay token almacenado');
@@ -37,6 +44,8 @@ function AddProduct() {
                 description: description,
                 price: price,
                 stock: cant,
+                created_by:"Admin",
+                category_id_fk: category,
             })
         })
         .then(response => { 
@@ -96,6 +105,14 @@ function AddProduct() {
                             placeholder="Cantidad"
                             value={cant}
                             onChange={(e) => setCant(e.target.value)}
+                        />
+                    </div>
+                    <div className="dato1">
+                    <input
+                            type="text"
+                            placeholder="Categoria"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                         />
                     </div>
                     <div className="btn-addemployees">

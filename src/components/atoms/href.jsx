@@ -3,7 +3,7 @@ import "../atoms/href.css";
 function Href(props){
     return(
         <div className="href">
-        <a href={props.referencia}>{props.text}</a>
+        <a href={props.referencia} onClick={props.onClick}>{props.text}</a>
         </div>
     );
 }

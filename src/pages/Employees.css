@@ -20,3 +20,13 @@
     display: flex;
     justify-content: space-between;
 }
+.h1empleados{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+.espaciadoEmployees{
+    display: flex;
+    padding: 4px;
+    height: 60px;
+}
