@@ -1,103 +1,74 @@
-import Label  from "../components/atoms/label";
-import Button from "../components/atoms/Button";
-import  Input  from "../components/atoms/input";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { xgcd } from "mathjs";
-import React, { useEffect, useState } from "react";
-
-function AddUser(){
+import Button from "../components/atoms/Button";
+import "../pages/AddEmployees.css";
+function AddUser() {
     const navigate = useNavigate();
-    const Salir2 = () =>{
-        console.log("Salir");
-        navigate("/Users");
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    }
-    
-    const [user, setUser] = useState([]);
-    const [bandera, setBandera] = useState(false);
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
 
-    const AddUser = () =>{
-        let nameUser = document.getElementById("nameUser").value
-        let emailUser = document.getElementById("emailUser").value
-        let passwordUser = document.getElementById("passwordUser").value
-        let lastNameUser = document.getElementById("lastNameUser").value
-    
+    const handleChange = (setter) => (e) => {
+        setter(e.target.value);
+    };
 
-        
-        fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({
-                "first_name": nameUser,
-                "last_name": lastNameUser,
-                "email": emailUser,
-                "password": passwordUser,
-                "role_id_fk": 2,
-                "created_by": "admin_user"
-            })
-        })
-            .then(response => { 
-                if (response.ok)
-                    return response.json()
-            })
-            .then(newUser => {
-                setUser([...user, newUser]);
-                setBandera(true);
-                console.log(newUser);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-    useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users`, {})
-            .then(response => { 
-                if (response.ok)
-                    return response.json()
-            })
-            .then(datos => {
-                setUser(datos);
-                setBandera(true);
-                console.log(datos);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }, [bandera]);
-    return(
-        <>
-         <div className="caja2" id="top">
-                <p>Bienvenido Empleado</p>
-            </div>
-            <div className="all-addemployees">
-                <div className="img-employees">
-                    <div className="input-imgemployees">
-                        <Input type="file"></Input>
-                    </div>
-                </div>
-                <div className="datosemployees">
-                    <div className="dato1">
-                        <input type="Ingrese nombre" text="Ingrese nombre" id="nameUser"></input>
-                    </div>
-                    <div className="dato1">
-                        <input text="APELLIDO" id="lastNameUser" ></input>
-                    </div>
-                    <div className="dato1">
-                        <input text="Dirección" id="emailUser"></input>
-                    </div>
-                    <div className="dato1">
-                        <input text="Numero telefonico" id="passwordUser"></input>
-                    </div>
-                    <div className="btn-addemployees">
-                        <Button text="Agregar" onClick={AddUser}></Button>
-                        <Button text="Salir" onClick={Salir2}></Button>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
+    const addUser = async () => {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            console.log('No hay token almacenado');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('first_name', name);
+        formData.append('last_name', lastName);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('role_id_fk', 2); 
+        formData.append('userImage', selectedFile);
+
+        try {
+            const response = await fetch('http://localhost:3002/api/users', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('User added:', data);
+                setBandera(!bandera);
+            } else {
+                const errorData = await response.json();
+                console.error('Error adding user:', errorData.message);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+    };
+
+    return (
+        <div>
+            <h1>Add User</h1>
+            <form onSubmit={addUser}>
+                <input type="text" value={name} onChange={handleChange(setName)} placeholder="First Name" />
+                <input type="text" value={lastName} onChange={handleChange(setLastName)} placeholder="Last Name" />
+                <input type="email" value={email} onChange={handleChange(setEmail)} placeholder="Email" />
+                <input type="password" value={password} onChange={handleChange(setPassword)} placeholder="Password" />
+                <input type="file" onChange={handleFileChange} />
+                <button type="submit">Add User</button>
+            </form>
+        </div>
+    );
 }
+
 export default AddUser;

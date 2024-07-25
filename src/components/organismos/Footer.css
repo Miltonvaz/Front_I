@@ -1,25 +1,25 @@
-
-.sb_footer_section_padding{
+.sb_footer_section_padding {
     padding: 4rem 4rem;
     display: flex;
     width: 100%;
+    color: #ffffff;
 }
 
-.footer{
+.footer {
     background-color: #2d2d32;
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    
-    bottom: 0;
+    color: #ffffff;
 }
 
-.sb_footer{
+.sb_footer {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
-.sb_footer-links{
+.sb_footer-links {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -30,105 +30,108 @@
     margin-bottom: 2rem;
 }
 
-.sb_footer-links_div{
+.sb_footer-links_div {
     width: 30%;
     margin: 1rem;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    color: white;
+    color: #ffffff;
 }
 
-.socialmedia img{
+.socialmedia img {
     display: flex;
     flex-direction: column;
     width: 50px;
 }
 
-.socialmedia{
+.socialmedia {
     width: 80%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
-.sb_footer-links_div h4{
+
+.sb_footer-links_div h4 {
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 0.9rem;
+    color: #ffffff;
 }
 
-.sb_footer-links_div p{
+.sb_footer-links_div p {
     font-size: 12px;
     line-height: 15px;
     margin-top: 0.2rem;
-
+    color: #ffffff;
 }
 
-.sb_footer-below{
+.sb_footer-below {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     margin-top: 0.2rem;
 }
 
-.sb_footer-below-links{
+.sb_footer-below-links {
     display: flex;
     flex-direction: row;
 }
 
-.sb_footer-below-links p{
+.sb_footer-below-links p {
     font-size: 12px;
     line-height: 15px;
     margin-left: 2rem;
-    color: white;
+    color: #ffffff;
     font-weight: 600;
 }
 
-.sb_footer-copyright p{
+.sb_footer-copyright p {
     font-size: 12px;
     line-height: 15px;
-    color: rgb(255, 255, 255);
+    color: #ffffff;
     font-weight: 600;
 }
 
-@media screen and (max-width: 850px){
-    .sb_footer-heading h1{
+@media screen and (max-width: 850px) {
+    .sb_footer-heading h1 {
         font-size: 44px;
         line-height: 50px;
     }
 }
 
-@media screen and (max-width: 550px){
-    .sb_footer-heading h1{
+@media screen and (max-width: 550px) {
+    .sb_footer-heading h1 {
         font-size: 34px;
         line-height: 42px;
     }
 
-    .sb_footer-links div{
+    .sb_footer-links div {
         margin: 1rem 0;
     }
 
-    .sb_footer-btn p{
+    .sb_footer-btn p {
         font-size: 14px;
         line-height: 20px;
     }
 
-    .sb_footer-below{
+    .sb_footer-below {
         flex-direction: column;
-        justify-content: left
+        justify-content: left;
     }
 
-    .sb_footer-below-links{
+    .sb_footer-below-links {
         flex-direction: column;
     }
 
-    .sb_footer-below-links p{
+    .sb_footer-below-links p {
         margin-left: 0rem;
         margin-top: 1rem;
     }
 }
 
-@media screen and (max-width: 400px){
-    .sb_footer-heading h1{
+@media screen and (max-width: 400px) {
+    .sb_footer-heading h1 {
         font-size: 27px;
         line-height: 38px;
     }

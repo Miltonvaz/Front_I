@@ -74,7 +74,13 @@ function Delivery(){
 
 
     useEffect(() =>{
-        fetch(`${import.meta.env.VITE_API_URL}/api/event`, {})
+        fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+        })
         .then(response => {
             if (response.ok) {
                 return response.json();

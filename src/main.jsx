@@ -1,137 +1,74 @@
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import Start from './pages/Start.jsx' 
-import Register from './pages/Register.jsx'
-import Contacto from './pages/Contacto.jsx'
-import Producto from './pages/Producto.jsx'
-import ToolsManuals from './pages/ToolsManuals.jsx'
-import ToolsElectric from './pages/ToolsElectric.jsx'
-import Materials from './pages/Materials.jsx'
-import OtherMore from './pages/OtherMore.jsx'
-import Delivery from './pages/Delivery.jsx'
-import Users from './pages/Users.jsx'
-import Order from './pages/Order.jsx'
-import Admin from './pages/Admin.jsx'
-import Employees from './pages/Employees.jsx'
-import './index.css'; 
-import About from './pages/About.jsx'
-import AddEmployees from './pages/AddEmployees.jsx'
-import ViewEmployees from './pages/ViewEmployees.jsx'
-import ViewUsers from './pages/ViewUsers.jsx'
-import ShoppingCart from './pages/ShoppingCart.jsx'
-import ProductsAdd from './pages/ProductsAdd.jsx'
-import AddProduct from './pages/AddProduct.jsx'
-import DeliveryAdmin from './pages/DeliveryAdmin.jsx'
-import OrderAdmin from './pages/OrderAdmin.jsx'
-import AddUser from './pages/AddUser.jsx'
+import React from "react";
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App.jsx';
+import './index.css';
+import Start from './pages/Start.jsx';
+import Register from './pages/Register.jsx';
+import Contacto from './pages/Contacto.jsx';
+import Producto from './pages/Producto.jsx';
+import ToolsManuals from './pages/ToolsManuals.jsx';
+import ToolsElectric from './pages/ToolsElectric.jsx';
+import Materials from './pages/Materials.jsx';
+import OtherMore from './pages/OtherMore.jsx';
+import Delivery from './pages/Delivery.jsx';
+import Users from './pages/Users.jsx';
+import Order from './pages/Order.jsx';
+import Admin from './pages/Admin.jsx';
+import Employees from './pages/Employees.jsx';
+import About from './pages/About.jsx';
+import AddEmployees from './pages/AddEmployees.jsx';
+import ViewEmployees from './pages/ViewEmployees.jsx';
+import ViewUsers from './pages/ViewUsers.jsx';
+import ShoppingCart from './pages/ShoppingCart.jsx';
+import ProductsAdd from './pages/ProductsAdd.jsx';
+import AddProduct from './pages/AddProduct.jsx';
+import AddUser from './pages/AddUser.jsx';
+import DeliveryAdmin from './pages/DeliveryAdmin.jsx';
+import OrderAdmin from './pages/OrderAdmin.jsx';
+import Checkout from './pages/CheckOut.jsx';
+import OrderConfirmation from './pages/OrderConfirmation.jsx';
+import Cart from './components/organismos/Cart.jsx';
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App></App>
-
-  },
-  {
-    path: '/Start',
-    element: <Start></Start>
-  },
-  {
-    path: '/Register',
-    element: <Register></Register>
-  },
-  {
-    path: '/Contacto',
-    element: <Contacto></Contacto>
-  },
-  {
-    path: '/Producto',
-    element: <Producto></Producto>
-  },
-  {
-    path: '/ToolsManuals',
-    element: <ToolsManuals></ToolsManuals>
-  },
-  {
-    path: '/ToolsElectric',
-    element: <ToolsElectric></ToolsElectric>
-  },
-  {
-    path: '/Materials',
-    element: <Materials></Materials>
-  },
-  {
-    path: '/OtherMore',
-    element: <OtherMore></OtherMore>
-  },
-  {
-    path: '/Delivery',
-    element: <Delivery></Delivery>
-  },
-  {
-    path: '/Users',
-    element: <Users></Users>
-  },
-  {
-    path: '/Order',
-    element: <Order></Order>
-  },
-  {
-    path: '/Admin',
-    element: <Admin></Admin>
-  },
-  {
-    path: '/Employees',
-    element: <Employees></Employees>
-  },
-  {
-    path: '/About',
-    element: <About></About>
-  },
-  {
-    path: '/AddEmployees',
-    element: <AddEmployees></AddEmployees>
-  },
-  {
-    path: '/ViewEmployees',
-    element: <ViewEmployees></ViewEmployees>
-  },
-  {
-    path: '/ViewUsers',
-    element: <ViewUsers></ViewUsers>
-  },
-  {
-    path: '/ShoppingCart',
-    element: <ShoppingCart></ShoppingCart>
-  },
-  {
-    path: '/ProductsAdd',
-    element: <ProductsAdd></ProductsAdd>
-  },
-  {
-    path: '/AddProduct',
-    element: <AddProduct></AddProduct>
-  },
-  {
-    path: '/AddUser',
-    element: <AddUser></AddUser>
-  },
-  {
-    path: '/DeliveryAdmin',
-    element: <DeliveryAdmin></DeliveryAdmin>
-  },
-  {
-    path: '/OrderAdmin',
-    element: <OrderAdmin></OrderAdmin>
-  },
-])
+  { path: '/', element: <App /> },
+  { path: '/Start', element: <Start /> },
+  { path: '/Register', element: <Register /> },
+  { path: '/Contacto', element: <Contacto /> },
+  { path: '/Producto', element: <Producto /> },
+  { path: '/ToolsManuals', element: <ToolsManuals /> },
+  { path: '/ToolsElectric', element: <ToolsElectric /> },
+  { path: '/Materials', element: <Materials /> },
+  { path: '/OtherMore', element: <OtherMore /> },
+  { path: '/Delivery', element: <Delivery /> },
+  { path: '/Users', element: <Users /> },
+  { path: '/Order', element: <Order /> },
+  { path: '/Admin', element: <Admin /> },
+  { path: '/Employees', element: <Employees /> },
+  { path: '/About', element: <About /> },
+  { path: '/AddEmployees', element: <AddEmployees /> },
+  { path: '/ViewEmployees', element: <ViewEmployees /> },
+  { path: '/ViewUsers', element: <ViewUsers /> },
+  { path: '/ShoppingCart', element: <ShoppingCart /> },
+  { path: '/ProductsAdd', element: <ProductsAdd /> },
+  { path: '/AddProduct', element: <AddProduct /> },
+  { path: '/AddUser', element: <AddUser /> },
+  { path: '/DeliveryAdmin', element: <DeliveryAdmin /> },
+  { path: '/OrderAdmin', element: <OrderAdmin /> },
+  { path: '/checkout/:product_id', element: <Checkout /> }, 
+  { path: '/order-confirmation', element: <OrderConfirmation /> },
+  { path: '/cart', element: <Cart /> },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PayPalScriptProvider
+      options={{
+        "client-id": "Ad92mJpGDxnirLROAULhooW3Fh6YpaQfZ34KOT_obq5UqkUMuIuvT4cL5d0eCtN475Flzv4HY8ajZXX0"
+      }}
+    >
+      <RouterProvider router={router} />
+    </PayPalScriptProvider>
   </React.StrictMode>,
-)
-
-
+);

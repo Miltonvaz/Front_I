@@ -4,10 +4,11 @@ import PlusButton from "../components/atoms/PlusBtn";
 import CardsProduct from "../components/molecules/CardsProduct";
 import Button from '../components/atoms/Button';
 import Swal from 'sweetalert2';
-import "../pages/ProductsAdd.css"
+import "../pages/ProductsAdd.css";
 
 function ProductsAdd() {
     const [datos, setDatos] = useState([]);
+    const [productIdDelete, setProductIdDelete] = useState('');
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -22,29 +23,23 @@ function ProductsAdd() {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                 'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`
             },
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Error en la solicitud: ' + response.statusText);
-            }
-        })
+        .then(response => response.ok ? response.json() : Promise.reject('Error en la solicitud: ' + response.statusText))
         .then(data => {
-            setDatos(data); 
+            console.log('Datos obtenidos:', data);
+            setDatos(data);
         })
-        .catch(error => {
-            console.error('Error al obtener productos:', error);
-        });
+        .catch(error => console.error('Error al obtener productos:', error));
 
-    }, []); 
+    }, []);
 
-    console.log(datos);
+    const handleProductIdChange = (e) => {
+        setProductIdDelete(e.target.value);
+    };
+
     const deleteProduct = () => {
-        const productIdDeletes = document.getElementById("productIdDelete").value;
-
         Swal.fire({
             title: "¿Está seguro de eliminar?",
             text: "No podrás revertir esto!",
@@ -55,31 +50,27 @@ function ProductsAdd() {
             confirmButtonText: "Sí, eliminarlo!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`${import.meta.env.VITE_API_URL}/api/products/${productIdDeletes}`, {
-                    method: 'DELETE',
+                fetch(`${import.meta.env.VITE_API_URL}/api/products/logic/${productIdDelete}`, {
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
                     },
                 })
-                .then(response => {
-                    if (response.ok) {
-                        setDatos(datos.filter(datos => datos.id !== parseInt(productIdDeletes)));
-                        Swal.fire({
-                            title: "Eliminado!",
-                            text: "El usuario ha sido eliminado.",
-                            icon: "success"
-                        });
-                    } else {
-                        throw new Error('Failed to delete user.');
-                    }
+                .then(response => response.ok ? response.json() : Promise.reject('Failed to delete product.'))
+                .then(() => {
+                    setDatos(datos.filter(dato => dato.id !== parseInt(productIdDelete)));
+                    Swal.fire({
+                        title: "Eliminado!",
+                        text: "El producto ha sido eliminado.",
+                        icon: "success"
+                    });
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+                .catch(error => console.error('Error:', error));
             }
         });
     };
+
     return (
         <>
             <HeaderEmployees />
@@ -91,7 +82,11 @@ function ProductsAdd() {
                     <PlusButton to="/AddProduct" />
                 </div>
                 <div className='subBtnProducAdd'>
-                    <input placeholder='product Id' id='productIdDelete'></input>
+                    <input
+                        placeholder='product Id'
+                        value={productIdDelete}
+                        onChange={handleProductIdChange}
+                    />
                 </div>
                 <div className='subBtnProducAdd'>
                     <Button text="Eliminar" onClick={deleteProduct} />
@@ -99,7 +94,7 @@ function ProductsAdd() {
             </div>
             <div className="view-EmployesCards">
                 {datos.map(element => (
-                    <CardsProduct key={element.id} text={element.name} />
+                    <CardsProduct key={element.id} text={element.name} imageUrl={element.url} />
                 ))}
             </div>
         </>

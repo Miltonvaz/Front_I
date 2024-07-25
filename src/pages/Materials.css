@@ -1,0 +1,16 @@
+.all-materials {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.h2-materials {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.materials-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}

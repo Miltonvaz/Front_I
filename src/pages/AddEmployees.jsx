@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import CardsEmployees from "../components/molecules/CardsEmployees";
 
 function AddEmployees() {
+     
     const navigate = useNavigate();
     const [employees, setEmployees] = useState([]);
     const [bandera, setBandera] = useState(false);
@@ -18,42 +19,61 @@ function AddEmployees() {
     }
 
     const AddEmployees = () => {
+        const token = localStorage.getItem('token');
+    
+        if (!token) {
+            console.log('No hay token almacenado');
+            return;
+        }
+    
         let nameEmployees = document.getElementById("nameEmployees").value;
         let lastNameEmployes = document.getElementById("lastNameEmployees").value;
         let emailEmployees = document.getElementById("emailEmployees").value;
         let passwordEmployees = document.getElementById("passwordEmployees").value;
-
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
+        let imgemployees = document.getElementById("fileEmployees").files[0];
+    
+        const formData = new FormData();
+        formData.append("first_name", nameEmployees);
+        formData.append("last_name", lastNameEmployes);
+        formData.append("email", emailEmployees);
+        formData.append("password", passwordEmployees);
+        formData.append("role_id_fk", '2');
+        formData.append("created_by", "admin_user");
+        if (imgemployees) {
+            formData.append("image", imgemployees);
+        }
+        
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({
-                "first_name": nameEmployees,
-                "last_name": lastNameEmployes,
-                "email": emailEmployees,
-                "password": passwordEmployees,
-                "role_id_fk": 2,
-                "created_by": "admin_user"
-            })
+            body: formData
         })
-            .then(response => { 
-                if (response.ok)
-                    return response.json()
-            })
-            .then(newEmployee => {
-                setEmployees([...employees, newEmployee]);
-                setBandera(true);
-                console.log(newEmployee);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        .then(response => {
+            if (response.ok) return response.json();
+            throw new Error('Network response was not ok.');
+        })
+        .then(newEmployee => {
+            setEmployees([...employees, newEmployee]);
+            setBandera(true);
+            console.log(newEmployee);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
+    
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {})
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+               'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+        })
             .then(response => { 
                 if (response.ok)
                     return response.json()
@@ -76,7 +96,7 @@ function AddEmployees() {
             <div className="all-addemployees">
                 <div className="img-employees">
                     <div className="input-imgemployees">
-                        <Input type="file"></Input>
+                        <input type="file" id="fileEmployees" accept="image/*"></input>
                     </div>
                 </div>
                 <div className="datosemployees">

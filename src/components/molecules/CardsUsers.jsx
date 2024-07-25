@@ -1,19 +1,23 @@
-import "../molecules/CardsUsers.css"
+import React from 'react';
+import "../molecules/CardsUsers.css";
 
-function CardsUsers(props){
-    console.log(props.nombre);
-    return(
-        <>
-            <div id="father-cards">
-                <div className="img-cards">
-                    <img src="https://www.escuelasdeprogramacion.com/wp-content/uploads"/>
-                    
-                </div>
-                <div className="text-cards">
-                    <p>{props.nombre}</p>
-                </div>
+function CardsUsers({ text, imageUrl }) {
+    const [firstName, lastName] = text.split(' '); 
+
+    console.log('Props:', { text, imageUrl });
+    console.log('Image URL:', imageUrl);
+
+    return (
+        <div id="father-cards">
+            <div className="img-cards">
+                <img src={imageUrl} alt={`${firstName} ${lastName}`} className="img-cards" />
             </div>
-        </>
-    )
+            <div className="text-cards">
+                <p>{firstName}</p>
+                <p>{lastName}</p>
+            </div>
+        </div>
+    );
 }
+
 export default CardsUsers;

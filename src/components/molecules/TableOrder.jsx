@@ -46,7 +46,7 @@ function TableOrder({ data }) {
 
         doc.save("table.pdf");
     };
-
+    
      const [records, setRecords] = useState(data);
 
   const handleChange = (e) => {

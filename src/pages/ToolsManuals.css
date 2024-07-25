@@ -1,11 +1,15 @@
-.all-Toolsmanuals{
-    width: 100%;
-    display: flex;
+.all-toolsmanuals {
+    padding: 20px;
 }
-.h2-toolsmanuals{
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+
+.h2-toolsmanuals {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tools-manuals-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    justify-items: center;
 }

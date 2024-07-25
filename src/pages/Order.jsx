@@ -21,7 +21,8 @@ function Order() {
         fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
                 products: productIds,
@@ -52,7 +53,8 @@ function Order() {
         fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`,{
             method: "GET",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
         }).then(
             response => {

@@ -30,3 +30,16 @@
     padding: 4px;
     height: 60px;
 }
+.employee-image {
+    width: 100px; 
+    height: 100px;
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+.card-employee {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}

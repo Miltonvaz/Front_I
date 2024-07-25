@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Href from "../atoms/href"; // Asegúrate de que la ruta y el nombre del archivo son correctos
+import Href from "../atoms/href"; 
 
-// Función para obtener la fecha y hora actual
+
 function getCurrentDateTime() {
     const today = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
