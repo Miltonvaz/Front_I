@@ -2,8 +2,7 @@ import React from 'react';
 
 const CardsEmployees = (props) => {
     const { text, imageUrl } = props;
-    const [firstName, lastName] = text.split(' '); 
-
+    const [firstName, lastName] = (text && typeof text === 'string') ? text.split(' ') : ['Unknown', 'Name'];
     console.log('Props:', props); 
     console.log('Image URL:', imageUrl);
 

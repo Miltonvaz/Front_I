@@ -1,11 +1,11 @@
-import Href from "../components/atoms/href";
 import SalesGraph from "../components/atoms/SalesGraph";
-import SimpleBarCharts from "../components/atoms/SimpleBarCharts";
 import StackedAreaCharts from "../components/atoms/StackedAreaCharts";
 import React, { useState, useEffect } from 'react';
-import "../pages/ViewEmployees.css"
+import "../pages/ViewEmployees.css";
 import Calendar from "../components/atoms/calendar";
 import HeaderEmployees from "../components/organismos/HeaderEmployees";
+import Swal from 'sweetalert2';
+import dayjs from 'dayjs';
 
 function getCurrentDateTime() {
     const today = new Date();
@@ -15,15 +15,9 @@ function getCurrentDateTime() {
     return `${date} ${time}`;
 }
 
-function ViewEmployees(){
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
-
-
+function ViewEmployees() {
     const [currentDateTime, setCurrentDateTime] = useState(getCurrentDateTime());
+    const [events, setEvents] = useState([]);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -33,29 +27,54 @@ function ViewEmployees(){
         return () => clearInterval(timer); 
     }, []);
 
-    return(
-        <>
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Failed to fetch events.");
+        })
+        .then((data) => {
+            const formattedEvents = data.map((event) => ({
+                start: new Date(event.start),
+                end: new Date(event.end),
+                title: event.title,
+            }));
+            setEvents(formattedEvents);
+        })
+        .catch((error) => {
+            console.error("Error al obtener eventos:", error);
+            Swal.fire("Error", "No se pudieron cargar los eventos.", "error");
+        });
+    }, []);
 
-                
-            <HeaderEmployees></HeaderEmployees>
-            <div className="father-elementsEmployees">
-                <div className="left-employees">
-                    <div className="graph-viewEmployees" >
-                        <StackedAreaCharts></StackedAreaCharts>
+    return (
+        <>
+            <HeaderEmployees />
+            <div className="view-employees-container">
+                <div className="left-section">
+                    <div className="chart-container stacked-area-chart">
+                        <StackedAreaCharts />
                     </div>
-                    <div className="graph-viewEmployees"id="graph-stack">
-                        <SalesGraph></SalesGraph>
+                    <div className="chart-container sales-graph">
+                        <SalesGraph />
                     </div>
                 </div>
-                <div className="right-employees">
-                    <div className="graph-viewEmployees">
-                        <Calendar></Calendar>
+                <div className="right-section">
+                    <div className="calendar-container">
+                        <Calendar events={events} />
                     </div>
                 </div>
             </div>
-            
         </>
-    )
+    );
 }
 
 export default ViewEmployees;

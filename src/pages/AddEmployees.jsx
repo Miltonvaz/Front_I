@@ -1,91 +1,96 @@
-import NavAdmin from "../components/molecules/navAdmin";
-import Label from "../components/atoms/label";
-import Button from "../components/atoms/Button";
-import Input from "../components/atoms/input";
-import "../pages/AddEmployees.css";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import Button from "../components/atoms/Button";
+import "../pages/AddEmployees.css";
 import CardsEmployees from "../components/molecules/CardsEmployees";
 
 function AddEmployees() {
-     
     const navigate = useNavigate();
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [employees, setEmployees] = useState([]);
     const [bandera, setBandera] = useState(false);
 
-    const Salir = () => {
-        console.log("Salir");
-        navigate("/Employees");
-    }
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
 
-    const AddEmployees = () => {
+    const handleChange = (setter) => (e) => {
+        setter(e.target.value);
+    };
+
+    const addEmployee = async (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
         const token = localStorage.getItem('token');
-    
+
         if (!token) {
             console.log('No hay token almacenado');
             return;
         }
-    
-        let nameEmployees = document.getElementById("nameEmployees").value;
-        let lastNameEmployes = document.getElementById("lastNameEmployees").value;
-        let emailEmployees = document.getElementById("emailEmployees").value;
-        let passwordEmployees = document.getElementById("passwordEmployees").value;
-        let imgemployees = document.getElementById("fileEmployees").files[0];
-    
+
         const formData = new FormData();
-        formData.append("first_name", nameEmployees);
-        formData.append("last_name", lastNameEmployes);
-        formData.append("email", emailEmployees);
-        formData.append("password", passwordEmployees);
-        formData.append("role_id_fk", '2');
-        formData.append("created_by", "admin_user");
-        if (imgemployees) {
-            formData.append("image", imgemployees);
+        formData.append('first_name', name);
+        formData.append('last_name', lastName);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('role_id_fk', '2');
+        formData.append('created_by', 'admin_user');
+        if (selectedFile) {
+            formData.append('userImage', selectedFile);
         }
-        
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/`, {
-            method: "POST",
-            headers: {
-                'Authorization': `Bearer ${token}`
-            },
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) return response.json();
-            throw new Error('Network response was not ok.');
-        })
-        .then(newEmployee => {
-            setEmployees([...employees, newEmployee]);
-            setBandera(true);
-            console.log(newEmployee);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-    
+
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Employee added:', data);
+                setEmployees([...employees, data]);
+                setBandera(!bandera);
+                navigate('/Employees'); 
+            } else {
+                const errorData = await response.json();
+                console.error('Error adding employee:', errorData.message);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+    };
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-               'Authorization': `Bearer ${localStorage.getItem('token')}`
+        const fetchEmployees = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setEmployees(data);
+                    setBandera(false);
+                } else {
+                    console.error('Error fetching employees:', await response.json());
                 }
-        })
-            .then(response => { 
-                if (response.ok)
-                    return response.json()
-            })
-            .then(datos => {
-                setEmployees(datos);
-                setBandera(true);
-                console.log(datos);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+            } catch (error) {
+                console.error('Network error:', error);
+            }
+        };
+
+        fetchEmployees();
     }, [bandera]);
 
     return (
@@ -94,33 +99,35 @@ function AddEmployees() {
                 <p>Bienvenido Administrador</p>
             </div>
             <div className="all-addemployees">
-                <div className="img-employees">
-                    <div className="input-imgemployees">
-                        <input type="file" id="fileEmployees" accept="image/*"></input>
+                <form onSubmit={addEmployee}>
+                    <div className="img-employees">
+                        <div className="input-imgemployees">
+                            <input type="file" onChange={handleFileChange} accept="image/*" />
+                        </div>
                     </div>
-                </div>
-                <div className="datosemployees">
-                    <div className="dato1">
-                        <input type="text" placeholder="Ingrese nombre" id="nameEmployees"></input>
+                    <div className="datosemployees">
+                        <div className="dato1">
+                            <input type="text" value={name} onChange={handleChange(setName)} placeholder="Ingrese nombre" />
+                        </div>
+                        <div className="dato1">
+                            <input type="text" value={lastName} onChange={handleChange(setLastName)} placeholder="Ingrese apellido" />
+                        </div>
+                        <div className="dato1">
+                            <input type="text" value={email} onChange={handleChange(setEmail)} placeholder="Email" />
+                        </div>
+                        <div className="dato1">
+                            <input type="password" value={password} onChange={handleChange(setPassword)} placeholder="Password" />
+                        </div>
+                        <div className="btn-addemployees">
+                            <Button text="Agregar" type="submit" />
+                            <Button text="Salir" onClick={() => navigate("/Employees")} />
+                        </div>
                     </div>
-                    <div className="dato1">
-                        <input type="text" placeholder="Ingrese apellido" id="lastNameEmployees"></input>
-                    </div>
-                    <div className="dato1">
-                        <input type="text" placeholder="Email" id="emailEmployees"></input>
-                    </div>
-                    <div className="dato1">
-                        <input type="password" placeholder="Password" id="passwordEmployees"></input>
-                    </div>
-                    <div className="btn-addemployees">
-                        <Button text="Agregar" onClick={AddEmployees}></Button>
-                        <Button text="Salir" onClick={Salir}></Button>
-                    </div>
-                </div>
+                </form>
             </div>
-            {bandera && <CardsEmployees employees={employees} />}
+            {employees.length > 0 && <CardsEmployees employees={employees} />}
         </>
-    )
+    );
 }
 
 export default AddEmployees;
