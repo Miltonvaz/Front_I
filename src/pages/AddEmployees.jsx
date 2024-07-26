@@ -37,7 +37,7 @@ function AddEmployees() {
         formData.append('last_name', lastName);
         formData.append('email', email);
         formData.append('password', password);
-        formData.append('role_id_fk', '2');
+        formData.append('role_id_fk', 2);
         formData.append('created_by', 'admin_user');
         if (selectedFile) {
             formData.append('userImage', selectedFile);
