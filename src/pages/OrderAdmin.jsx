@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../components/atoms/Button";
 import TableOrder from "../components/molecules/TableOrder";
-import HeaderEmployees from "../components/organismos/HeaderEmployees";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react';
 import NavAdmin from "../components/molecules/navAdmin";
-import "../pages/OrderAdmin.css"
+import "../pages/OrderAdmin.css";
 
 function OrderAdmin() {
     const [data, setData] = useState([]);
@@ -16,17 +13,23 @@ function OrderAdmin() {
         const city = document.getElementById("cityOrder").value;
         const street = document.getElementById("streetOrder").value;
         const userId = document.getElementById("userIdOrder").value;
+        const cant = document.getElementById("cantdOrder").value;
 
         const productIds = productIdInput.split(',').map(id => parseInt(id.trim()));
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`, {
+        const products = productIds.map(id => ({
+            id: id,
+            cantidad: parseInt(cant.trim())
+        }));
+
+        fetch(`https://ferreteriaapi.integrador.xyz/api/purchaseOrders`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-                products: productIds,
+                products: products,
                 user_id_fk: parseInt(userId),
                 street: street,
                 city: city,
@@ -40,39 +43,42 @@ function OrderAdmin() {
             }
             throw new Error('Network response was not ok.');
         })
-        .then(datos => {
-            setData(datos);
-            setBandera(true);
-            console.log(datos);
+        .then(() => {
+            // Limpiar los campos después de agregar
+            document.getElementById("productIdOrder").value = '';
+            document.getElementById("cityOrder").value = '';
+            document.getElementById("streetOrder").value = '';
+            document.getElementById("userIdOrder").value = '';
+            document.getElementById("cantdOrder").value = '';
+
+            // Cambiar el valor de `bandera` para recargar los datos
+            setBandera(prev => !prev);
         })
         .catch(error => {
             console.error('Error:', error);
         });
     }
-    
-    useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`,{
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
-        }).then(
-            response => {
-                if(response.ok){
-                    return response.json()
-                }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
             }
-        ).then(
-            data => {
-                setData(data);
-                setBandera(true);
-                console.log(data);
-            }
-        ).catch(error =>{
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            setData(data);
+        })
+        .catch(error => {
             console.log(error);
         });
-        
     }, [bandera]);
 
     return (
@@ -83,22 +89,44 @@ function OrderAdmin() {
             </div>
             <div className="all-Order">
                 <div className="inputOrder">
-                    <input type="text" placeholder="Product IDs (comma separated)" id="productIdOrder" />
+                    <input
+                        type="text"
+                        placeholder="Product IDs (comma separated)"
+                        id="productIdOrder"
+                    />
                 </div>
                 <div className="inputOrder">
-                    <input type="text" placeholder="City" id="cityOrder" />
+                    <input
+                        type="text"
+                        placeholder="City"
+                        id="cityOrder"
+                    />
                 </div>
                 <div className="inputOrder">
-                    <input type="text" placeholder="Street" id="streetOrder" />
+                    <input
+                        type="text"
+                        placeholder="Street"
+                        id="streetOrder"
+                    />
                 </div>
                 <div className="inputOrder">
-                    <input type="text" placeholder="User ID" id="userIdOrder" />
+                    <input
+                        type="text"
+                        placeholder="User ID"
+                        id="userIdOrder"
+                    />
                 </div>
                 <div className="inputOrder">
-                <Button text="Agregar" onClick={AddOrder} />
+                    <input
+                        type="text"
+                        placeholder="Cantidad"
+                        id="cantdOrder"
+                    />
+                </div>
+                <div className="inputOrder">
+                    <Button text="Agregar" onClick={AddOrder} />
                 </div>
             </div>
-            
             <div className="tablaOrder">
                 <TableOrder data={data} />
             </div>

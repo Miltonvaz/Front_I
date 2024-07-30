@@ -8,6 +8,7 @@ function TableOrder({ data }) {
         {
             name: "Products",
             selector: row => row.product_id_fk,
+            selector: row => row.cantidad,
             sortable: true,
         },
         {
@@ -25,6 +26,11 @@ function TableOrder({ data }) {
             selector: row => row.user_id_fk,
             sortable: true,
         },
+        {
+            name: "Id",
+            selector: row => row.purchaseorder_id,
+            sortable: true,
+        },
     ];
 
     const generatePDF = () => {
@@ -36,7 +42,8 @@ function TableOrder({ data }) {
             record.product_id_fk,
             record.City,
             record.street,
-            record.user_id_fk
+            record.user_id_fk,
+            record.purchaseorder_id
         ]);
 
         doc.autoTable({
@@ -49,21 +56,12 @@ function TableOrder({ data }) {
     
      const [records, setRecords] = useState(data);
 
-  const handleChange = (e) => {
-    const filteredRecords = data.filter(record =>
-      record.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setRecords(filteredRecords);
-  };
+  
 
     return (
         <>
             <div>
-                <input
-                    type="text"
-                    placeholder="Buscar por descripción"
-                    onChange={handleChange}
-                />
+                
                 <button onClick={generatePDF}>Generar PDF</button>
             </div>
             <DataTable

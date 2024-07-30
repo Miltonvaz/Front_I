@@ -2,69 +2,87 @@ import React, { useEffect, useState } from "react";
 import NavAdmin from "../components/molecules/navAdmin";
 import CalendarComponent from "../components/atoms/calendar";
 import dayjs from "dayjs";
-import "../pages/Delivery.css"; // Asegúrate de que la ruta sea correcta
+import "../pages/Delivery.css"; 
+import Swal from 'sweetalert2';
 
 function DeliveryAdmin() {
     const [events, setEvents] = useState([]);
 
-    // Función para añadir un nuevo evento
+    
     const addEventDelivery = () => {
         const startInput = document.getElementById("start").value;
         const endInput = document.getElementById("end").value;
         const titleInput = document.getElementById("title").value;
         const purchaseOrderIdInput = document.getElementById("purchaseOrderId").value;
 
+        
         if (!startInput || !endInput || !titleInput || !purchaseOrderIdInput) {
-            alert("Por favor completa todos los campos.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Por favor completa todos los campos.',
+            });
             return;
         }
 
-        const newEvent = {
-            start: dayjs(startInput).toDate(), // Convertir a objeto Date
-            end: dayjs(endInput).toDate(),     // Convertir a objeto Date
-            title: titleInput,
-            created_by: "admin",
-            purchaseOrder_id_fk: purchaseOrderIdInput,
-        };
+        Swal.fire({
+            title: "¿Quieres guardar los cambios?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Guardar",
+            denyButtonText: `No guardar`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const newEvent = {
+                    start: dayjs(startInput).toDate(), 
+                    end: dayjs(endInput).toDate(),     
+                    title: titleInput,
+                    created_by: "admin",
+                    purchaseOrder_id_fk: purchaseOrderIdInput,
+                };
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: JSON.stringify({
-                start: dayjs(startInput).format(), // Formato para la API
-                end: dayjs(endInput).format(),     // Formato para la API
-                title: titleInput,
-                created_by: "user123",
-                purchaseOrder_id_fk: purchaseOrderIdInput,
-            }),
-        })
-        .then((response) => {
-            if (response.ok) {
-                console.log("Evento agregado exitosamente a la base de datos.");
-                return response.json();
-            } else {
-                throw new Error("Error en la solicitud: " + response.statusText);
+                fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                    body: JSON.stringify({
+                        start: dayjs(startInput).format(), 
+                        end: dayjs(endInput).format(),     
+                        title: titleInput,
+                        created_by: "user123",
+                        purchaseOrder_id_fk: purchaseOrderIdInput,
+                    }),
+                })
+                .then((response) => {
+                    if (response.ok) {
+                        console.log("Evento agregado exitosamente a la base de datos.");
+                        return response.json();
+                    } else {
+                        throw new Error("Error en la solicitud: " + response.statusText);
+                    }
+                })
+                .then((data) => {
+                    setEvents((prevEvents) => [...prevEvents, newEvent]); 
+                    Swal.fire("Guardado!", "El evento ha sido agregado.", "success");
+                    console.log("Respuesta del servidor:", data);
+                })
+                .catch((error) => {
+                    console.error("Error al agregar evento:", error);
+                    Swal.fire("Error", "Hubo un error al agregar el evento.", "error");
+                });
+
+                document.getElementById("start").value = "";
+                document.getElementById("end").value = "";
+                document.getElementById("title").value = "";
+                document.getElementById("purchaseOrderId").value = "";
+            } else if (result.isDenied) {
+                Swal.fire("Los cambios no fueron guardados", "", "info");
             }
-        })
-        .then((data) => {
-            setEvents((prevEvents) => [...prevEvents, newEvent]); // Actualizar el estado con el nuevo evento
-            console.log("Respuesta del servidor:", data);
-        })
-        .catch((error) => {
-            console.error("Error al agregar evento:", error);
         });
-
-        // Limpiar campos
-        document.getElementById("start").value = "";
-        document.getElementById("end").value = "";
-        document.getElementById("title").value = "";
-        document.getElementById("purchaseOrderId").value = "";
     };
 
-    // Cargar eventos al montar el componente
+   
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
             method: "GET",
@@ -80,10 +98,10 @@ function DeliveryAdmin() {
             throw new Error("Failed to fetch events.");
         })
         .then((data) => {
-            // Formatear los eventos para el componente del calendario
+            
             const formattedEvents = data.map((event) => ({
-                start: new Date(event.start), // Convertir a objeto Date
-                end: new Date(event.end),     // Convertir a objeto Date
+                start: new Date(event.start), 
+                end: new Date(event.end),     
                 title: event.title,
             }));
 

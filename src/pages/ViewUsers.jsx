@@ -63,7 +63,7 @@ function ViewUsers() {
                     {user.map(element => (
                         <CardsUsers 
                             key={element.id} 
-                            text={`${element.first_name} ${element.last_name}`} 
+                            text={`${element.first_name} ${element.last_name} ${element.email} ${element.user_id}`} 
                             imageUrl={element.url} 
                         />
                     ))}

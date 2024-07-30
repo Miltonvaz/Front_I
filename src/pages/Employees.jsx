@@ -10,10 +10,11 @@ function Employees() {
     const [datos, setDatos] = useState([]);
     const [fetchError, setFetchError] = useState(null); 
     const [employeeIdToDelete, setEmployeeIdToDelete] = useState(''); 
+    const [bandera, setBandera] = useState(false);
 
     useEffect(() => {
         console.log('Fetching data...');
-        fetch('http://localhost:3002/api/users/empleados', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/empleados`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -38,8 +39,8 @@ function Employees() {
             console.error('Fetch error:', error);
             setFetchError(error.message);
         });
-    }, []);
-    
+    }, [bandera]); 
+
     const deleteEmployee = () => {
         if (!employeeIdToDelete) {
             Swal.fire({
@@ -73,6 +74,7 @@ function Employees() {
                     }
                     setDatos(datos.filter(employee => employee.id !== parseInt(employeeIdToDelete)));
                     setEmployeeIdToDelete(''); 
+                    setBandera(!bandera); // Cambiar el valor de 'bandera' para forzar la recarga
                     Swal.fire({
                         title: "Eliminado!",
                         text: "El usuario ha sido eliminado.",
@@ -85,6 +87,88 @@ function Employees() {
             }
         });
     };
+
+    const addEmployee = async () => {
+        Swal.fire({
+            title: "Agregar empleado",
+            html: `
+                <img src="/iconoUserMasculino.png" alt="Icono Usuario" class="swal-img" id="img">
+                <div class="custom-file-input-container">
+                    <label class="custom-file-label" for="swal-input5">Seleccionar archivo...</label>
+                    <input id="swal-input5" class="swal2-input custom-file-input" type="file" style="display:none;">
+                    <span id="swal-file-name" class="swal-file-name">Ningún archivo seleccionado</span>
+                </div>
+                <input id="swal-input1" class="swal2-input" placeholder="Nombre">
+                <input id="swal-input2" class="swal2-input" placeholder="Apellido">
+                <input id="swal-input3" class="swal2-input" placeholder="Email">
+                <input id="swal-input4" class="swal2-input" placeholder="Password">
+            `,
+            customClass: {
+                popup: 'custom-swal-popup'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Agregar',
+            cancelButtonText: 'Cancelar',
+            preConfirm: async () => {
+                const name = document.getElementById('swal-input1').value;
+                const lastName = document.getElementById('swal-input2').value;
+                const email = document.getElementById('swal-input3').value;
+                const password = document.getElementById('swal-input4').value;
+                const file = document.getElementById('swal-input5').files[0];
+                
+                const formData = new FormData();
+                formData.append('first_name', name);
+                formData.append('last_name', lastName);
+                formData.append('email', email);
+                formData.append('password', password);
+                formData.append('role_id_fk', 2);
+                formData.append('created_by', "admin_user");
+                
+                if (file) {
+                    formData.append('userImage', file);
+                }else{
+                    formData.append('userImage', defaultFile);
+                }
+                console.log('Form Data:', formData);
+                try {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
+                      method: "POST",
+                      headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                      },
+                      body: formData,
+                    });
+              
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('Data:', data);
+                        setBandera(!bandera); 
+                    } else {
+                     console.log("Error en la solicitud: " + response.statusText);
+                    }
+                  } catch (error) {
+                    console.log("Error al registrar usuario: " + error.message);
+                  }
+               
+            }
+        });
+    
+        const defaultFile = "/iconoUserMasculino.png";
+        const fileInput = document.getElementById("swal-input5");
+        const img = document.getElementById("img");
+    
+        fileInput.addEventListener('change', e => {
+            if (e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            } else {
+                img.src = defaultFile;
+            }
+        });
+    }
 
     return (
         <>
@@ -111,17 +195,16 @@ function Employees() {
                                 <Button text="Eliminar" onClick={deleteEmployee} />
                             </div>
                             <div className="espaciadoEmployees">
-                                <PlusButton to="/AddEmployees" />
+                                <Button text="+" onClick={addEmployee}></Button>
                             </div>
                         </div>
                     </div>
                     <br />
                     <div className="view-EmployesCards">
                     {datos.map(element => (
-                    <CardsEmployees key={element.id} text={element.first_name} imageUrl={element.url} />
+                    <CardsEmployees key={element.id} text={`${element.first_name} ${element.last_name} ${element.email} ${element.user_id}`}  imageUrl={element.url} />
                     ))}
                     </div>
-
                 </div>
             </div>
         </>

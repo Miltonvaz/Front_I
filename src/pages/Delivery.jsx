@@ -8,7 +8,7 @@ import "../pages/Delivery.css";
 function Delivery() {
     const [events, setEvents] = useState([]);
 
-    // Función para añadir un nuevo evento
+   
     const addEventDelivery = () => {
         const startInput = document.getElementById("start").value;
         const endInput = document.getElementById("end").value;
@@ -59,7 +59,7 @@ function Delivery() {
             Swal.fire("Error", "Hubo un problema al agregar el evento.", "error");
         });
 
-        // Limpiar campos
+      
         document.getElementById("start").value = "";
         document.getElementById("end").value = "";
         document.getElementById("title").value = "";

@@ -10,7 +10,8 @@ function Footer(){
                     
                 </div>
                 <div className="sb_footer-links_div">
-                    <p>horario de Atención</p>
+                    <p>Horario de Atención</p>
+                    <br></br>
                     <p>Lunes a viernes:</p>
                     <p>9:00 AM - 5:00 PM</p>
                     <p>sábado y domingo</p>
@@ -24,6 +25,7 @@ function Footer(){
                 </div>
                 <div className="sb_footer-links_div">
                     <p>Términos y Condiciones</p>
+                    <br></br>
                     <p>Legal</p>
                 </div>
                 <div className="sb_footer-links_div">

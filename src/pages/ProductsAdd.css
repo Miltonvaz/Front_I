@@ -11,4 +11,13 @@
 }
 .subBtnProducAdd{
     height: 30px;
-}   
+    padding: 20px;
+}
+.view-EmployesCards{
+    display: flex;
+    padding: 50px;
+}  
+#inputIdEdit{
+    width: 140px;
+    height: 40px;
+} 

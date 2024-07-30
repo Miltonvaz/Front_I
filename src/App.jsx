@@ -72,7 +72,7 @@
                 <div id="welcome">
                     <h1>WELCOME BACK!</h1>
                     <span id="container-spanApp">
-                        Bienvenido a Ferretería ------, tu destino confiable para todas tus <br></br>
+                        Bienvenido a Ferretería ROMAN, tu destino confiable para todas tus <br></br>
                         necesidades de construcción y bricolaje, Encuentra una amplia gama de <br></br>
                         productos de las mejores marcas del mercado.
                     </span>

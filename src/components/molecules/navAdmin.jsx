@@ -41,7 +41,7 @@ function NavAdmin() {
                         <p id="reporte-text">Reporte general</p>
                     </div>
                     <div className="text-hour">
-                        <p id="hour-admin">Fecha y hora actuales: {currentDateTime}</p>
+                        <p id="hour-admin"> {currentDateTime}</p>
                     </div>
                     <div className="dropdown">
                         <button onClick={toggleDropdown} className="dropdown-button">

@@ -1,4 +1,8 @@
-
+body{
+  
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
 
 .view-Employes{
     display: flex;
@@ -43,3 +47,42 @@
     margin: 10px;
     text-align: center;
 }
+
+.custom-swal-popup {
+    width: 700px; /* Ajusta el ancho según tus necesidades */
+    height: auto; /* Ajusta la altura según tus necesidades */
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+
+  .custom-file-input-container {
+    position: relative;
+    margin-top: 10px;
+  }
+  
+  .custom-file-label {
+    display: inline-block;
+    background-color: #3085d6;
+    color: white;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .custom-file-input {
+    display: none;
+  }
+  
+  .swal-file-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+  }  
+  .swal-img {
+    width: 100px; 
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+  }

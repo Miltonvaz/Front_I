@@ -47,7 +47,7 @@ function NavEmployees() {
                         {isDropdownOpen && (
                             <div className="dropdown-content">
                                 <Href text="Inicio" referencia="/ViewEmployees" />
-                                <Href text="Users" referencia="/Users"/> 
+                                <Href text="Users" referencia="/AddUser"/> 
                                 <Href text="ProductsAdd" referencia="/ProductsAdd" />
                                 <Href text="Delivery" referencia="/Delivery" />
                                 <Href text="Order" referencia="/Order" />

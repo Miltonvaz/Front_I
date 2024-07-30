@@ -2,9 +2,9 @@ import React from 'react';
 import { BarChart, Bar, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const data = [
-  { name: "Sayuri", age: 19, weight: 60 },
-  { name: "Joaquin", age: 21, weight: 71 },
-  { name: "Milton", age: 19, weight: 62 },
+  { name: "Sayuri", apartados: 19, ventas: 60 },
+  { name: "Joaquin", apartados: 21, ventas: 71 },
+  { name: "Milton", apartados: 19, ventas: 62 },
 ];
 
 function SimpleBarCharts() {
@@ -16,8 +16,8 @@ function SimpleBarCharts() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="weight" fill="#6b48ff" />
-        <Bar dataKey="age" fill="#1ee3cf" />
+        <Bar dataKey="ventas" fill="#6b48ff" />
+        <Bar dataKey="apartados" fill="#1ee3cf" />
       </BarChart>
     </ResponsiveContainer>
   );
