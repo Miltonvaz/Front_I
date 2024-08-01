@@ -29,7 +29,7 @@ function ProductsAdd() {
         }
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
+            const response = await fetch(`http://localhost:3002/api/products`, {
                 method: 'POST',
                 body: formData,
                 headers: {

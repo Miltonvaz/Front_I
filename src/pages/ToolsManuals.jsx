@@ -10,7 +10,7 @@ function ToolsManuals() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/clientes`, { 
+        fetch(`http://localhost:3002/api/users/clientes`, { 
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ function ToolsManuals() {
     }, []); 
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/products/manuales`, {
+        fetch(`http://localhost:3002/api/products/manuales`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

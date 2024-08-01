@@ -9,7 +9,7 @@ function ToolsElectric() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users`, { 
+        fetch(`http://localhost:3002/api/users`, { 
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ function ToolsElectric() {
     }, []);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/products/electricos`, {
+        fetch(`http://localhost:3002/api/products/electricos`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

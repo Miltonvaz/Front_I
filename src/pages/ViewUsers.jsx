@@ -26,7 +26,7 @@ function ViewUsers() {
     const [user, setUser] = useState([]);
     const [bandera, setBandera] = useState(false);
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/clientes`, {
+        fetch(`http://localhost:3002/api/users/clientes`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

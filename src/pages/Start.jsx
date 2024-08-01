@@ -12,7 +12,7 @@ function Start() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/clientes`, { 
+        fetch(`http://localhost:3002/api/users/clientes`, { 
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function Start() {
             setLoadingUser(false);
         });
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
+        fetch(`http://localhost:3002/api/products`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

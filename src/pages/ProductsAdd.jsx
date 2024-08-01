@@ -18,7 +18,7 @@ function ProductsAdd() {
             return;
         }
 
-        fetch(`https://ferreteriaapi.integrador.xyz/api/products`, {
+        fetch(`http://localhost:3002/api/products`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function ProductsAdd() {
             confirmButtonText: "Sí, eliminarlo!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://ferreteriaapi.integrador.xyz/api/products/logic/${productIdDelete}`, {
+                fetch(`http://localhost:3002/api/products/logic/${productIdDelete}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ function ProductsAdd() {
                 }
                 
                 try {
-                    const response = await fetch(`https://ferreteriaapi.integrador.xyz/api/products`, {
+                    const response = await fetch(`http://localhost:3002/api/products`, {
                         method: "POST",
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,

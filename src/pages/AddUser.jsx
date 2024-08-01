@@ -15,7 +15,7 @@ function AddUser() {
 
     useEffect(() => {
         console.log('Fetching data...');
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/clientes`, {
+        fetch(`http://localhost:3002/api/users/clientes`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ function AddUser() {
             confirmButtonText: "Sí, eliminarlo!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`${import.meta.env.VITE_API_URL}/api/users/${userIdToDelete}`, {
+                fetch(`http://localhost:3002/api/users/${userIdToDelete}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function AddUser() {
                 }
                 console.log('Form Data:', formData);
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
+                    const response = await fetch(`http://localhost:3002/api/users`, {
                       method: "POST",
                       headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -13,9 +13,12 @@ const OrderConfirmation = () => {
     const [address, setAddress] = useState({ street: '', city: '' });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [paymentCompleted, setPaymentCompleted] = useState(false); 
+    const [receipt, setReceipt] = useState(null); 
+    const conversionRate = 0.055; 
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/clientes`, {
+        fetch(`http://localhost:3002/api/users/clientes`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -36,10 +39,9 @@ const OrderConfirmation = () => {
         .finally(() => setLoading(false));
 
         const items = JSON.parse(localStorage.getItem('cart')) || [];
-        
         const validatedItems = items.map(item => ({
             ...item,
-            cantidad: item.cantidad || 1 
+            cantidad: item.cantidad || 1
         }));
         setCartItems(validatedItems);
     }, []);
@@ -50,6 +52,11 @@ const OrderConfirmation = () => {
     };
 
     const handleFinishOrder = () => {
+        if (!paymentCompleted) {
+            Swal.fire('Error', 'El pago debe completarse antes de finalizar el pedido.', 'error');
+            return;
+        }
+
         const invalidProducts = cartItems.filter(item => !item.product_id);
         if (invalidProducts.length > 0) {
             setError('Algunos productos tienen un ID no definido.');
@@ -60,16 +67,17 @@ const OrderConfirmation = () => {
         const order = { 
             products: cartItems.map(item => ({
                 id: item.product_id,  
-                cantidad: item.cantidad || 1 
+                cantidad: item.cantidad || 1
             })),
             user_id_fk: parseInt(localStorage.getItem('userId')), 
             street: address.street,
-            city: address.city
+            city: address.city,
+            receipt: paymentCompleted ? receipt : null 
         };
 
         console.log("Enviando orden:", order);
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`, {
+        fetch(`http://localhost:3002/api/purchaseOrders`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -110,15 +118,24 @@ const OrderConfirmation = () => {
         navigate('/start'); 
     };
 
-    const onPaymentSuccess = () => {
-        Swal.fire('Pago exitoso', 'Su pago ha sido procesado con éxito.', 'success');
-        handleFinishOrder();
+    const onPaymentSuccess = (order) => {
+        console.log("Detalles del pago:", order);
+        if (!order || !order.id) {
+            Swal.fire('Error', 'Detalles del pago no están disponibles.', 'error');
+            return;
+        }
+    
+        Swal.fire('Pago exitoso', `Su pago ha sido procesado con éxito. ID de transacción: ${order.id}`, 'success');
+        setPaymentCompleted(true);
+        setReceipt(order.id);
     };
     
     const totalValue = cartItems.reduce((total, item) => {
-        const itemTotal = (item.price && item.quantity) ? item.price * item.quantity : 0;
+        const itemTotal = (item.price && item.cantidad) ? item.price * item.cantidad : 0;
         return total + itemTotal;
-    }, 0).toFixed(2);
+    }, 0);
+
+    const totalValueInDollars = (totalValue * conversionRate).toFixed(2); 
 
     if (loading) {
         return <div>Loading...</div>;
@@ -137,20 +154,22 @@ const OrderConfirmation = () => {
                     <div className="order-summary">
                         <h3>Resumen de su Pedido</h3>
                         <div className="order-summary-items">
-                            {cartItems.map(item => (
-                                <div key={item.id} className="order-summary-item">
-                                    <img src={item.url || "/default-product-image.png"} alt={item.text} className="order-summary-item-image" />
-                                    <div className="order-summary-item-details">
-                                        <h4>{item.text}</h4>
-                                        <p>Precio: ${item.price?.toFixed(2)}</p>
-                                        <p>Cantidad: {item.quantity}</p>
-                                        <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
+                            {cartItems.map(item => {
+                                return (
+                                    <div key={item.id} className="order-summary-item">
+                                        <img src={item.url || "/default-product-image.png"} alt={item.text} className="order-summary-item-image" />
+                                        <div className="order-summary-item-details">
+                                            <h4>{item.text}</h4>
+                                            <p>Precio: ${item.price?.toFixed(2)} MXN</p>
+                                            <p>Cantidad: {item.cantidad}</p>
+                                            <p>Total: ${(item.price * item.cantidad).toFixed(2)} MXN</p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                         <div className="order-confirmation-summary">
-                            <h3>Total: ${totalValue}</h3>
+                            <h3>Total: ${totalValue.toFixed(2)} MXN</h3>
                         </div>
                     </div>
                 )}
@@ -167,7 +186,11 @@ const OrderConfirmation = () => {
                     </label>
                 </div>
 
-                <button className="finish-order-button" onClick={handleFinishOrder}>
+                <button 
+                    className="finish-order-button" 
+                    onClick={handleFinishOrder} 
+                    disabled={!paymentCompleted} 
+                >
                     Finalizar Pedido
                 </button>
 
@@ -176,7 +199,7 @@ const OrderConfirmation = () => {
                 </button>
 
                 <div className="paypal-button-container">
-                    <PayPalButton totalValue={totalValue} invoice="Productos" onPaymentSuccess={onPaymentSuccess}/>
+                    <PayPalButton totalValue={totalValueInDollars} invoice="Productos" onPaymentSuccess={onPaymentSuccess} />
                 </div>
             </div>
             <Footer />

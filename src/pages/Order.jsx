@@ -18,7 +18,7 @@ function Order() {
 
         const productIds = productIdInput.split(',').map(id => parseInt(id.trim()));
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`, {
+        fetch(`http://localhost:3002/api/purchaseOrders`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function Order() {
     }
     
     useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`,{
+        fetch(`http://localhost:3002/api/purchaseOrders`,{
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ function Materials() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/users/clientes`, { 
+        fetch(`http://localhost:3002/api/users/clientes`, { 
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ function Materials() {
     }, []);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/products/construccion`, {
+        fetch(`http://localhost:3002/api/products/construccion`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

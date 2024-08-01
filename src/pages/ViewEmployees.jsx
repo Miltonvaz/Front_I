@@ -51,7 +51,7 @@ function ViewEmployees() {
     }, []);
 
     useEffect(() => {
-        fetch('https://ferreteriaapi.integrador.xyz/api/event', {
+        fetch('http://localhost:3002/api/event', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -79,7 +79,7 @@ function ViewEmployees() {
     }, []);
 
     useEffect(() => {
-        fetch('https://ferreteriaapi.integrador.xyz/api/products/view/most-sold-products', {
+        fetch('http://localhost:3002/api/products/view/most-sold-products', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

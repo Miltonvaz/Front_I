@@ -61,13 +61,10 @@ const router = createBrowserRouter([
   { path: '/cart', element: <Cart /> },
 ]);
 
+const CLIENT_ID = "Ad92mJpGDxnirLROAULhooW3Fh6YpaQfZ34KOT_obq5UqkUMuIuvT4cL5d0eCtN475Flzv4HY8ajZXX0"
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <PayPalScriptProvider
-      options={{
-        "client-id": "Ad92mJpGDxnirLROAULhooW3Fh6YpaQfZ34KOT_obq5UqkUMuIuvT4cL5d0eCtN475Flzv4HY8ajZXX0"
-      }}
-    >
+    <PayPalScriptProvider options={{ "client-id": CLIENT_ID, currency: "USD" }}>
       <RouterProvider router={router} />
     </PayPalScriptProvider>
   </React.StrictMode>,

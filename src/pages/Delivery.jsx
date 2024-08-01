@@ -28,7 +28,7 @@ function Delivery() {
             purchaseOrder_id_fk: idPurchase,
         };
 
-        fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
+        fetch(`http://localhost:3002/api/event`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -67,7 +67,7 @@ function Delivery() {
     };
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
+        fetch(`http://localhost:3002/api/event`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

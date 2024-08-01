@@ -20,7 +20,7 @@
             }
         
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/login`, {
+                const response = await fetch(`http://localhost:3002/api/users/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

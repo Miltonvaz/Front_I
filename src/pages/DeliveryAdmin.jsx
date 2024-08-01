@@ -40,7 +40,7 @@ function DeliveryAdmin() {
                     purchaseOrder_id_fk: purchaseOrderIdInput,
                 };
 
-                fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
+                fetch(`http://localhost:3002/api/event`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ function DeliveryAdmin() {
 
    
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/event`, {
+        fetch(`http://localhost:3002/api/event`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

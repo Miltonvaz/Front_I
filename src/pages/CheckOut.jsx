@@ -15,7 +15,7 @@ function Checkout() {
 
     useEffect(() => {
         if (product_id) {
-            fetch(`${import.meta.env.VITE_API_URL}/api/products/${product_id}`, {
+            fetch(`http://localhost:3002/api/products/${product_id}`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',

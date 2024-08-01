@@ -22,7 +22,7 @@ function OrderAdmin() {
             cantidad: parseInt(cant.trim())
         }));
 
-        fetch(`https://ferreteriaapi.integrador.xyz/api/purchaseOrders`, {
+        fetch(`http://localhost:3002/api/purchaseOrders`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ function OrderAdmin() {
     }
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/api/purchaseOrders`, {
+        fetch(`http://localhost:3002/api/purchaseOrders`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
